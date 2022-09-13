@@ -4,9 +4,91 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" 
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/styles.css">
     <title>Document</title>
 </head>
 <body>
-    
+    <header>
+        <nav class="navbar navbar-expand-md fixed-top navbar-dark">
+            <div class="container-fluid">
+                <a href="#" class="navbar-brand"><img src="images/unnamed-removebg-preview.png" width="80" alt=""></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a href="#sobreMi" class="nav-link text-black">Sobre Mi</a></li>
+                        <li class="nav-item"><a href="#trabajos" class="nav-link text-black">Trabajos</a></li>
+                        <li class="nav-item"><a href="#contactame" class="nav-link text-black">Contactame</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-black" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Español</a>
+                            <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="pages/english.html">Ingles</a></li>
+                            </ul>
+                          </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light rounded-2" tabindex="0">
+        <div id="inicio" class="p-3">
+            <lottie-player 
+                src="https://assets7.lottiefiles.com/private_files/lf30_wqypnpu5.json"  
+                background="transparent" speed="0.75" loop autoplay id="videoInicio">
+            </lottie-player>
+            <div class="description">
+                <p id="pTitulo">Hola, mi nombre es</p>
+                <h1>Matias Arriete</h1>
+                <p id="pDesarrollador">Desarrollador Web</p>
+            </div>
+        </div>
+        <div id="sobreMi">
+            <div class="GlobalSobreMi">
+                <h2 id="tituloSobreMi">Sobre mi</h2>
+                <div class="Info">
+                    <p id="pTextInfo">Hola mi nombre es Matías Arriete. Soy Diseñador <br />
+                                      y desarrollador Front-End viviendo en España.<br />
+                                      Mi interés en el diseño web comenzó gracias a <br />
+                                      un profesor universitario quien me introdujo en<br />
+                                      este amplio y divertido mundo. Después de un tiempo <br />
+                                      decidí llevar ese mundo a programación, comencé a <br />
+                                      tomar cursos y crecer  en esta nueva aventura<br />
+                    </p>
+                    <div id="contImg">
+                        <img id="imgPerfil" src="../images/Perfil.jpeg" alt="">
+                    </div>
+                </div>
+                <div class="HabilitiesLeng">
+                    
+                </div>
+            </div>
+        </div>
+        <div id="trabajos">
+            <h4>Prueba2</h4>
+        </div>
+        <div id="contactame">
+            <h4>Prueba3</h4>
+        </div>
+    </div>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <!-- <script>
+        const typed = new Typed('.typed', {
+            strings: ['Matias Arriete'],
+            typeSpeed: 75,
+            startDelay: 300,
+            backSpeed: 75,
+            loop: true,
+            backDelay: 3000,
+            loopCount: false
+        });
+    </script> -->
+    <script 
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" 
+      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous">
+    </script>
 </body>
 </html>

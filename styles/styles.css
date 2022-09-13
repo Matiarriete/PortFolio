@@ -1,0 +1,97 @@
+*{
+    margin: 0;
+}
+#inicio{
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+#videoInicio{
+    width: 50%;
+}
+.description{
+    width: 50%;
+    padding-left: 50px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+#pTitulo{
+    margin-bottom: 0;
+    color: #e76958;
+    font-size: 35px;
+    font-weight: 300;
+}
+h1{
+    margin-bottom: 0;
+    font-size: 70px;
+    font-weight: 600;
+}
+#pDesarrollador{
+    color: #e76958;
+    font-size: 30px;
+    font-weight: 300;
+}
+
+/* Termina inicio */
+
+/* Inicia sobre mi */
+
+#sobreMi{
+    background-color: #e76958;
+    height: 600px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.GlobalSobreMi{
+    width: 75%;
+    padding: 60px;
+    margin-left: 12.5%;
+}
+.Info{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+#tituloSobreMi{
+    font-weight: 700;
+    font-size: 40px;
+    margin: 0 100px 0 100px;
+}
+#pTextInfo{
+    font-weight: 300;
+    font-size: 20px;
+    margin: 0 100px 0 100px;
+}
+
+#contImg{
+    border: 2px solid black;
+    border-radius: 25%;
+}
+
+#imgPerfil{
+    width: 300px;
+    border-radius: 25%;
+    transition: transform .3s ease-out;
+}
+
+#imgPerfil:hover{
+    transform: translate(-10px, -10px);
+}
+
+/* Termina sobre mi */
+
+
+#trabajos{
+    background-color: red;
+    height: 1000px;
+}
+#contactame{
+    background-color: blueviolet;
+    height: 1000px;
+}
