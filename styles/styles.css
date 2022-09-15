@@ -41,47 +41,69 @@ h1{
 
 #sobreMi{
     background-color: #e76958;
-    height: 600px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
 }
 .GlobalSobreMi{
-    width: 75%;
+    width: 95%;
     padding: 60px;
-    margin-left: 12.5%;
+}
+#tituloSobreMi{
+    font-weight: 700;
+    font-size: 40px;
+    margin: 0 100px 50px 100px;
 }
 .Info{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-}
-#tituloSobreMi{
-    font-weight: 700;
-    font-size: 40px;
-    margin: 0 100px 0 100px;
+    justify-content: space-evenly;
 }
 #pTextInfo{
     font-weight: 300;
     font-size: 20px;
     margin: 0 100px 0 100px;
 }
-
 #contImg{
     border: 2px solid black;
     border-radius: 25%;
 }
-
 #imgPerfil{
     width: 300px;
     border-radius: 25%;
     transition: transform .3s ease-out;
 }
-
 #imgPerfil:hover{
     transform: translate(-10px, -10px);
+}
+.abilitiesLeng{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+.abilities, .lenguages{
+    width: 300px;
+}
+.contAbility, .contLenguages{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+.contAbility p, .contLenguages p{
+    font-weight: 500;
+    font-size: 15px;
+}
+.progress{
+    margin: 8px;
+    width: 60%;
+    height: 6px;
 }
 
 /* Termina sobre mi */
