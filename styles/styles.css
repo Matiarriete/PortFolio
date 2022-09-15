@@ -41,19 +41,14 @@ h1{
 
 #sobreMi{
     background-color: #e76958;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
 }
 .GlobalSobreMi{
-    width: 95%;
     padding: 60px;
 }
 #tituloSobreMi{
     font-weight: 700;
     font-size: 40px;
-    margin: 0 100px 50px 100px;
+    margin: 0 100px 0 100px;
 }
 .Info{
     display: flex;
@@ -65,7 +60,6 @@ h1{
 #pTextInfo{
     font-weight: 300;
     font-size: 20px;
-    margin: 0 100px 0 100px;
 }
 #contImg{
     border: 2px solid black;
@@ -80,21 +74,15 @@ h1{
     transform: translate(-10px, -10px);
 }
 .abilitiesLeng{
-    margin-top: 100px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: space-evenly;
-}
-.abilities, .lenguages{
-    width: 300px;
+    margin: 100px;
+    display: grid;
+    grid-template-columns: repeat(2,45%);
+    justify-content: flex-end;
 }
 .contAbility, .contLenguages{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: flex-start;
 }
 .contAbility p, .contLenguages p{
     font-weight: 500;
@@ -102,7 +90,7 @@ h1{
 }
 .progress{
     margin: 8px;
-    width: 60%;
+    width: 300px;
     height: 6px;
 }
 
