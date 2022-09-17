@@ -3,9 +3,6 @@
 }
 #inicio{
     background-color: #ffffff;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
 }
 #videoInicio{
     width: 50%;
@@ -42,21 +39,21 @@ h1{
 #sobreMi{
     background-color: #e76958;
 }
-.GlobalSobreMi{
+.GlobalSobreMi, .GlobalExperiencia, .Globalcontactame{
     padding: 60px;
 }
-#tituloSobreMi{
+#tituloSobreMi, #tituloExperiencia, #tituloContactame{
     font-weight: 700;
     font-size: 40px;
-    margin: 0 100px 0 100px;
 }
-.Info{
+.Info, #inicio, .contAbility, .contLenguages, .contInfo, .contRedes{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-evenly;
 }
+.Info{
+    align-items: center;
+    justify-content: space-evenly;}
 #pTextInfo{
     font-weight: 300;
     font-size: 20px;
@@ -67,11 +64,18 @@ h1{
 }
 #imgPerfil{
     width: 300px;
+    height: 300px;
+    background-image: url("../images/Perfil.jpeg");
+    background-position: center;
+    background-size: cover;
+    background-attachment: scroll;
+    filter:sepia(60%);
     border-radius: 25%;
-    transition: transform .3s ease-out;
+    transition: transform 1s ease-out, filter 1s ease-out;
 }
 #imgPerfil:hover{
     transform: translate(-10px, -10px);
+    filter:sepia(0%);
 }
 .abilitiesLeng{
     margin: 100px;
@@ -79,29 +83,98 @@ h1{
     grid-template-columns: repeat(2,45%);
     justify-content: flex-end;
 }
-.contAbility, .contLenguages{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
 .contAbility p, .contLenguages p{
     font-weight: 500;
     font-size: 15px;
 }
 .progress{
     margin: 8px;
-    width: 300px;
+    width: 250px;
     height: 6px;
+}
+.progress-bar{
+    background-color: #335D9C;
 }
 
 /* Termina sobre mi */
+/* comienza experiencia */
 
 
-#trabajos{
-    background-color: red;
-    height: 1000px;
+#experiencia{
+    background-color: #ffffff;
 }
+#contenedorVideoDesc{
+    margin: 50px;
+    display: grid;
+    grid-template-columns: repeat(2,45%);
+    justify-content: center;
+    align-items: center;
+}
+video{
+    width: 100%;
+    border-radius: 7px;
+    filter: blur(1px);
+    transition: filter 0.5s linear;
+}
+video:hover{
+    filter: blur(0px);
+}
+.contDesc{
+    background-color: #ECA9A0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 0 60px;
+    padding: 20px;
+    border-radius: 7px;
+}
+.contDesc h3{
+    text-align: right;
+}
+.contDesc p{
+    font-weight: 200;
+    text-align: right;
+}
+.contInfo a, .redes a{
+    padding: 10px;
+    color: #000000;
+    font-size: 30px;
+}
+
+/* Termina experiencia */
+
+
 #contactame{
-    background-color: blueviolet;
-    height: 1000px;
+    background-color: #e76958;
 }
+.contFormRedes{
+    display: grid;
+    grid-template-columns: 45% 10% 45%;
+}
+.form-floating{
+    margin: 15px;
+    width: 75%;
+}
+#form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.mapContacto{
+    background-color: #ffffff;
+}
+
+.btn{
+    border: #000000 solid 2px;
+}
+#separatorRedes{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.contRedes{
+    align-items: center;
+    justify-content: center;
+}
+

@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../styles/styles.css">
     <title>Document</title>
 </head>
@@ -22,7 +23,7 @@
                 <div class="collapse navbar-collapse" id="navbarContent">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a href="#sobreMi" class="nav-link text-black">About Me</a></li>
-                        <li class="nav-item"><a href="#trabajos" class="nav-link text-black">Works</a></li>
+                        <li class="nav-item"><a href="#experiencia" class="nav-link text-black">Experience</a></li>
                         <li class="nav-item"><a href="#contactame" class="nav-link text-black">Contact Me</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-black" data-bs-toggle="dropdown" href="#"
@@ -86,11 +87,64 @@
                 </div>
             </div>
         </div>
-        <div id="trabajos">
-            <h4>Prueba2</h4>
+        <div id="experiencia">
+            <div class="GlobalExperiencia">
+                <h2 id="tituloExperiencia">Experience<hr></h2>
+                <div id="contenedorVideoDesc">
+                    <video id="videoProy" src="../images/2022-09-16-10-11-50.mp4" autoplay loop></video>  
+                    <div class="contDesc">
+                        <h3>Tiempo Nuevo Church Website</h3>
+                        <p>This page was designed as a project for a web development course provided by CoderHouse.
+                            This page was based on information provided by that church.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="contactame">
-            <h4>Prueba3</h4>
+            <div class="Globalcontactame">
+                <h2 id="tituloContactame">Contact me<hr></h2>
+                <div class="contFormRedes">
+                    <div class="formContactame">
+                        <form id="form" class="needs-validation" novalidate> 
+                            <div class="form-floating">
+                                <input type="text" class="form-control" required placeholder="Nombre"
+                                id="floatingNombre" name="floatingNombre">
+                                <label for="floatingNombre">Name</label>
+                                <div class="valid-feedback">Campo valido</div>
+                                <div class="invalid-feedback">Debe completar los datos</div>
+                            </div>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" required placeholder="Mail"
+                                id="floatingMail" name="floatingMail">
+                                <label for="floatingMail">Mail</label>
+                                <div class="valid-feedback">Campo valido</div>
+                                <div class="invalid-feedback">Debe completar los datos</div>
+                            </div>
+                            <div class="form-floating">
+                                <textarea class="form-control" required placeholder="Mensaje"
+                                id="floatingMensaje" name="floatingMensaje"></textarea>
+                                <label for="floatingMensaje">Message</label>
+                                <div class="valid-feedback">Campo valido</div>
+                                <div class="invalid-feedback">Debe completar los datos</div>
+                            </div>
+                            <div class="botonContacto">
+                                <button class="btn fw-bold" id="btnContacto" type="submit">Submit</button>
+                            </div>
+                        </form>            
+                    </div>
+                    <h3 id="separatorRedes">OR</h3>
+                    <div class="contRedes">
+                        <div class="redes">
+                            <a href="https://github.com/Matiarriete/" target="_blank"><i class="bi bi-github"></i></a>
+                            <a href="https://www.linkedin.com/in/matias-arriete-82686a161/" target="_blank"><i class="bi bi-linkedin"></i></a>
+                            <a href=" https://wa.me/34611228127" target="_blank"><i class="bi bi-whatsapp"></i></a>
+                            <a href="mailto:arrietematias@gmail.com" target="_blank"><i class="bi bi-envelope-fill"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
         </div>
     </div>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
@@ -98,6 +152,7 @@
         integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous">
     </script>
     <script src="../scripts/habilidades.js"></script>
+    <script src="../scripts/nav.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,6 @@
-var array = [['Java',40], ['HTML', 75], ['C++', 15], ['MySQL', 50],
-['JavaScript', 40], ['Ux Design', 75], ['Google Scripts', 15], ['NodeJS', 15]
-['CSS', 75]];
+var array = [['Java',40], ['HTML', 50], ['C++', 15], ['MySQL', 50],
+['JavaScript', 40], ['Ux Design', 50], ['Google Scripts', 15], ['NodeJS', 15]
+['CSS', 50]];
 
  array.forEach(element => {
     const abilities = document.getElementById('abilities');
