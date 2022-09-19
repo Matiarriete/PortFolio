@@ -1,6 +1,9 @@
 *{
     margin: 0;
 }
+.navbar-custom{
+    background-color: #ff7d60;
+}
 #inicio{
     background-color: #ffffff;
 }
@@ -40,7 +43,7 @@ h1{
     background-color: #e76958;
 }
 .GlobalSobreMi, .GlobalExperiencia, .Globalcontactame{
-    padding: 60px;
+    padding: 70px;
 }
 #tituloSobreMi, #tituloExperiencia, #tituloContactame{
     font-weight: 700;
@@ -89,7 +92,7 @@ h1{
 }
 .progress{
     margin: 8px;
-    width: 250px;
+    width: 65%;
     height: 6px;
 }
 .progress-bar{
@@ -103,7 +106,7 @@ h1{
 #experiencia{
     background-color: #ffffff;
 }
-#contenedorVideoDesc{
+.contenedorVideoDesc{
     margin: 50px;
     display: grid;
     grid-template-columns: repeat(2,45%);
@@ -124,7 +127,7 @@ video:hover{
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    margin: 0 60px;
+    margin: 0 40px;
     padding: 20px;
     border-radius: 7px;
 }
@@ -142,7 +145,6 @@ video:hover{
 }
 
 /* Termina experiencia */
-
 
 #contactame{
     background-color: #e76958;
@@ -164,7 +166,6 @@ video:hover{
 .mapContacto{
     background-color: #ffffff;
 }
-
 .btn{
     border: #000000 solid 2px;
 }
@@ -176,5 +177,69 @@ video:hover{
 .contRedes{
     align-items: center;
     justify-content: center;
+}
+#github, #linkedIn, #wsp, #mail{
+    border-radius: 20%;
+}
+#github:hover{
+    background-color: #000000;
+    color: #ffffff;
+}
+#linkedIn:hover{
+    background-color: #0a66c2;
+    color: #ffffff;
+}
+#wsp:hover{
+    color: #ffffff;
+    background-color: #25D366;
+}
+#mail:hover{
+    color: #ffffff;
+    background-color: #1c6fff;
+}
+
+
+@media screen and (max-width: 1200px){
+    .contenedorVideoDesc {
+        display: grid;
+        grid-template-columns: repeat(1, 100%);
+    }
+
+    .contDesc{
+        margin: 25px 0;
+    }
+    .abilitiesLeng{
+        display: grid;
+        grid-template-columns: repeat(1, 100%);
+    }
+    .contFormRedes{
+        display: flex;
+        flex-direction: column;
+    }
+    #separatorRedes{
+    margin: 30px;
+    justify-content: center;
+    }
+}
+
+@media screen and (max-width: 800px) and (min-width: 600px) {
+    .abilitiesLeng{
+        margin: 50px;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .contenedorVideoDesc {
+        display: grid;
+        grid-template-columns: repeat(1, 100%);
+    }
+
+    .contDesc{
+        margin: 25px 0;
+    }
+    .abilitiesLeng{
+        display: grid;
+        grid-template-columns: repeat(1, 100%);
+    }
 }
 
