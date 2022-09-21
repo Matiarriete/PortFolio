@@ -34,6 +34,17 @@ h1{
     font-size: 30px;
     font-weight: 300;
 }
+.cvConocerMas button{
+    background-color: #e76958;
+    border: #e76958 solid 2px;
+    border-radius: 5px;
+    height: 40px;
+    margin-top: 15px;
+}
+.cvConocerMas button a{
+    text-decoration: none;
+    color: #ffffff;
+}
 
 /* Termina inicio */
 
