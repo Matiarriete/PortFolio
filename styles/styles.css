@@ -58,6 +58,7 @@ h1{
     align-items: center;
     justify-content: space-evenly;}
 #pTextInfo{
+    width: 500px;
     font-weight: 300;
     font-size: 20px;
 }
@@ -229,6 +230,25 @@ video:hover{
 }
 
 @media screen and (max-width: 600px){
+    .description{
+        width: 100%;
+        padding-left: 10px;
+    }
+
+    #videoInicio{
+        width: 0px;
+    }
+    .GlobalSobreMi, .GlobalExperiencia, .Globalcontactame{
+        padding: 70px 20px;
+    }
+    .abilitiesLeng{
+        margin: 20px;
+    }
+    .contAbility p, .contLenguages p{
+        font-size: 10px;
+    }
+    .contenedorVideoDesc{margin: 0%;}
+
     .contenedorVideoDesc {
         display: grid;
         grid-template-columns: repeat(1, 100%);
@@ -241,5 +261,8 @@ video:hover{
         display: grid;
         grid-template-columns: repeat(1, 100%);
     }
+
+    
+
 }
 
