@@ -3,7 +3,7 @@
 
     // Obtener todos los formularios a los que queremos aplicar estilos de validación de Bootstrap personalizados
     const form = document.getElementById('form');
-    const btn = document.getElementById('btnOracion');
+    const btn = document.getElementById('btnContacto');
     const serviceID = 'service_s9j9gbm';
     const templateID = 'template_q04bcj6';
 
