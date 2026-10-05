@@ -1,0 +1,286 @@
+.hero {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 100svh;
+  padding-block: calc(var(--header-height) + var(--space-2xl)) var(--space-3xl);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* --- Animated aurora backdrop (pure CSS: no Lottie payload, no extra request) */
+
+.hero__backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(ellipse 60% 50% at 12% 18%, var(--brand-soft) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 45% at 88% 12%, var(--accent-soft) 0%, transparent 62%),
+    radial-gradient(ellipse 70% 55% at 50% 100%, var(--surface-inset) 0%, transparent 70%);
+}
+
+.hero__blob {
+  position: absolute;
+  z-index: -2;
+  border-radius: 50%;
+  filter: blur(72px);
+  opacity: 0.55;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.hero__blob--1 {
+  top: -14%;
+  left: -6%;
+  width: 34rem;
+  height: 34rem;
+  background: var(--brand);
+  opacity: 0.22;
+  animation: blob-drift-a 22s var(--ease-in-out) infinite;
+}
+
+.hero__blob--2 {
+  top: 6%;
+  right: -10%;
+  width: 28rem;
+  height: 28rem;
+  background: var(--accent);
+  opacity: 0.2;
+  animation: blob-drift-b 27s var(--ease-in-out) infinite;
+}
+
+.hero__blob--3 {
+  bottom: -22%;
+  left: 32%;
+  width: 26rem;
+  height: 26rem;
+  background: var(--brand);
+  opacity: 0.14;
+  animation: blob-drift-c 31s var(--ease-in-out) infinite;
+}
+
+@keyframes blob-drift-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(6%, 8%, 0) scale(1.12);
+  }
+}
+
+@keyframes blob-drift-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.05);
+  }
+  50% {
+    transform: translate3d(-8%, 10%, 0) scale(0.92);
+  }
+}
+
+@keyframes blob-drift-c {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(0.95);
+  }
+  50% {
+    transform: translate3d(10%, -8%, 0) scale(1.1);
+  }
+}
+
+/* Subtle grid so the large empty areas read as intentional. */
+.hero__grid {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+  background-size: 4.5rem 4.5rem;
+  mask-image: radial-gradient(ellipse 65% 60% at 50% 45%, #000 0%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 65% 60% at 50% 45%, #000 0%, transparent 75%);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+/* --- Content ------------------------------------------------------------- */
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  text-align: center;
+}
+
+.hero__greeting {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: 0.45em 1.1em;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background-color: color-mix(in srgb, var(--surface) 70%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--text-muted);
+  font-size: var(--step--1);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.hero__name {
+  font-size: var(--step-6);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, var(--text) 30%, var(--brand) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+:root[data-theme='dark'] .hero__name {
+  background: linear-gradient(135deg, var(--text) 25%, var(--brand) 95%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.hero__role {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 500;
+  letter-spacing: var(--tracking-tight);
+  color: var(--accent);
+}
+
+.hero__role::before,
+.hero__role::after {
+  content: '';
+  width: 1.5rem;
+  height: 1px;
+  background-color: currentColor;
+  opacity: 0.5;
+}
+
+.hero__tagline {
+  max-width: 44ch;
+  font-size: var(--step-1);
+  font-weight: 300;
+  line-height: var(--leading-relaxed);
+  color: var(--text-muted);
+  text-wrap: balance;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2xs);
+  margin-top: var(--space-2xs);
+}
+
+.hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm) var(--space-md);
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--border);
+  color: var(--text-subtle);
+  font-size: var(--step--1);
+}
+
+.hero__meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3xs);
+}
+
+.hero__meta-item svg {
+  color: var(--brand);
+}
+
+/* --- Scroll hint --------------------------------------------------------- */
+
+.hero__scroll {
+  position: absolute;
+  bottom: var(--space-md);
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3xs);
+  transform: translateX(-50%);
+  color: var(--text-subtle);
+  font-size: var(--step--2);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+}
+
+.hero__mouse {
+  display: flex;
+  justify-content: center;
+  width: 1.35rem;
+  height: 2.1rem;
+  padding-top: 0.4rem;
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--radius-pill);
+}
+
+.hero__wheel {
+  width: 3px;
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background-color: var(--brand);
+  animation: wheel 1.9s var(--ease-in-out) infinite;
+}
+
+@keyframes wheel {
+  0% {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(9px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__blob,
+  .hero__wheel {
+    animation: none;
+  }
+
+  .hero__blob {
+    opacity: 0.16;
+  }
+}
+
+@media (max-width: 47.99em) {
+  .hero {
+    min-height: auto;
+    padding-block: calc(var(--header-height) + var(--space-2xl)) var(--space-3xl);
+  }
+
+  .hero__scroll {
+    display: none;
+  }
+
+  .hero__actions {
+    width: 100%;
+  }
+
+  .hero__actions .btn {
+    flex: 1 1 12rem;
+  }
+}

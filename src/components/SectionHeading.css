@@ -1,0 +1,22 @@
+.section__head--center {
+  align-items: center;
+  text-align: center;
+}
+
+.section__head--center .lead {
+  margin-inline: auto;
+}
+
+.section__head--center .eyebrow::before {
+  display: none;
+}
+
+/* Keep a section title from sitting alone at the bottom of a column. */
+.section__head > :first-child {
+  margin-top: 0;
+}
+
+.tag__icon {
+  margin-right: 0.4em;
+  color: var(--brand);
+}

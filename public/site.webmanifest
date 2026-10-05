@@ -1,0 +1,30 @@
+{
+  "name": "Matias Arriete — Portfolio",
+  "short_name": "Matias Arriete",
+  "description": "Portfolio of Matias Arriete, front-end designer and developer based in Spain.",
+  "lang": "es",
+  "start_url": "/PortFolio/?lang=es",
+  "scope": "/PortFolio/",
+  "display": "standalone",
+  "background_color": "#faf7f4",
+  "theme_color": "#1e4d3b",
+  "icons": [
+    {
+      "src": "/PortFolio/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/PortFolio/favicon.ico",
+      "sizes": "48x48 96x96 128x128",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/PortFolio/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

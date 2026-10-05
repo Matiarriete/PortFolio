@@ -1,0 +1,148 @@
+/* ============================================================================
+   Design tokens — single source of truth for the visual system.
+   Themes override the colour tokens only; spacing/type/motion stay shared.
+   ========================================================================== */
+
+:root {
+  /* --- Type scale (fluid, 375px -> 1440px) ------------------------------ */
+  --font-sans:
+    'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
+  --font-display: 'Space Grotesk Variable', var(--font-sans);
+  --font-mono: ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace;
+
+  --step--2: clamp(0.72rem, 0.7rem + 0.1vw, 0.78rem);
+  --step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.92rem);
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.13rem);
+  --step-1: clamp(1.19rem, 1.11rem + 0.4vw, 1.44rem);
+  --step-2: clamp(1.42rem, 1.29rem + 0.66vw, 1.87rem);
+  --step-3: clamp(1.71rem, 1.5rem + 1.05vw, 2.42rem);
+  --step-4: clamp(2.06rem, 1.73rem + 1.66vw, 3.13rem);
+  --step-5: clamp(2.48rem, 1.91rem + 2.86vw, 4.05rem);
+  --step-6: clamp(2.98rem, 2.12rem + 4.3vw, 5.24rem);
+
+  --leading-tight: 1.08;
+  --leading-snug: 1.28;
+  --leading-normal: 1.62;
+  --leading-relaxed: 1.75;
+
+  --tracking-tight: -0.03em;
+  --tracking-normal: -0.011em;
+  --tracking-wide: 0.08em;
+  --tracking-widest: 0.16em;
+
+  /* --- Spacing (4/8 rhythm) -------------------------------------------- */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 5rem;
+  --space-4xl: 7.5rem;
+
+  /* --- Radii ----------------------------------------------------------- */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+
+  /* --- Layout ---------------------------------------------------------- */
+  --container: 74rem;
+  --container-narrow: 48rem;
+  --header-height: 4.25rem;
+  --section-gap: clamp(4.5rem, 10vw, 8.5rem);
+
+  /* --- Motion ---------------------------------------------------------- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --dur-fast: 140ms;
+  --dur-base: 260ms;
+  --dur-slow: 520ms;
+
+  --z-base: 1;
+  --z-sticky: 100;
+  --z-header: 200;
+  --z-overlay: 300;
+
+  /* ========================================================================
+     Colour — light theme (default)
+     ===================================================================== */
+  color-scheme: light;
+
+  --bg: #faf7f4;
+  --bg-alt: #f1ebe1;
+  --surface: #ffffff;
+  --surface-2: #f5f1e9;
+  --surface-inset: #efe9dd;
+
+  --brand: #1e4d3b;
+  --brand-hover: #16382b;
+  --brand-soft: #e3ece7;
+  --brand-ring: rgba(30, 77, 59, 0.32);
+  --on-brand: #ffffff;
+
+  --accent: #c86b3c;
+  --accent-hover: #a9552c;
+  --accent-soft: #f6e7dc;
+
+  --text: #14211c;
+  --text-muted: #55635b;
+  --text-subtle: #7a8880;
+  --text-inverse: #faf7f4;
+
+  --border: #e3ddd0;
+  /* Interactive boundaries (outline buttons, icon buttons) need 3:1 per WCAG
+     1.4.11, so this is deliberately darker than the decorative --border. */
+  --border-strong: #948972;
+
+  --shadow-xs: 0 1px 2px rgba(20, 33, 28, 0.05);
+  --shadow-sm: 0 2px 8px rgba(20, 33, 28, 0.06);
+  --shadow-md: 0 8px 24px -8px rgba(20, 33, 28, 0.14);
+  --shadow-lg: 0 24px 56px -20px rgba(20, 33, 28, 0.22);
+  --shadow-brand: 0 12px 32px -12px rgba(30, 77, 59, 0.4);
+}
+
+/* ============================================================================
+   Colour — dark theme
+   Brand lightens so it keeps AA contrast on a dark surface.
+   ========================================================================== */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg: #0e1512;
+  --bg-alt: #121b17;
+  --surface: #16201b;
+  --surface-2: #1c2822;
+  --surface-inset: #1a251f;
+
+  --brand: #6fbf9b;
+  --brand-hover: #8bd0b1;
+  --brand-soft: #1a2b23;
+  --brand-ring: rgba(111, 191, 155, 0.38);
+  --on-brand: #0b1310;
+
+  --accent: #e0915f;
+  --accent-hover: #eea679;
+  --accent-soft: #2c2119;
+
+  --text: #eaf2ed;
+  --text-muted: #8fa398;
+  --text-subtle: #74857b;
+  --text-inverse: #0e1512;
+
+  --border: #26332c;
+  /* Lightened to clear 3:1 against the dark surface for the same reason. */
+  --border-strong: #5c7166;
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 10px 28px -10px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 28px 60px -24px rgba(0, 0, 0, 0.75);
+  --shadow-brand: 0 14px 36px -14px rgba(111, 191, 155, 0.34);
+}

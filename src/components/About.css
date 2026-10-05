@@ -1,0 +1,128 @@
+.about {
+  position: relative;
+}
+
+.about__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: start;
+}
+
+.about__title {
+  margin-block: var(--space-2xs) var(--space-md);
+  max-width: 20ch;
+}
+
+.about__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  color: var(--text-muted);
+  font-size: var(--step-0);
+  font-weight: 300;
+  line-height: var(--leading-relaxed);
+  max-width: 58ch;
+}
+
+.about__body strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.about__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  margin-top: var(--space-2xs);
+}
+
+/* --- Portrait ------------------------------------------------------------- */
+
+.about__portrait {
+  position: relative;
+  justify-self: center;
+  max-width: 22rem;
+  width: 100%;
+}
+
+.about__frame {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background-color: var(--surface-2);
+  box-shadow: var(--shadow-lg);
+  isolation: isolate;
+}
+
+/* Offset accent panel behind the photo. */
+.about__portrait::before {
+  content: '';
+  position: absolute;
+  inset: 1.15rem -1.15rem -1.15rem 1.15rem;
+  z-index: -1;
+  border: 1.5px solid var(--brand);
+  border-radius: var(--radius-xl);
+  opacity: 0.5;
+}
+
+.about__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-xl);
+  filter: saturate(0.92) contrast(1.02);
+  transition:
+    transform var(--dur-slow) var(--ease-out),
+    filter var(--dur-slow) var(--ease-out);
+}
+
+.about__portrait:hover .about__photo {
+  transform: scale(1.035);
+  filter: saturate(1.05) contrast(1.02);
+}
+
+.about__badge {
+  position: absolute;
+  bottom: var(--space-md);
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3xs);
+  padding: 0.55em 1em;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background-color: color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-md);
+  color: var(--text);
+  font-size: var(--step--2);
+  font-weight: 600;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+
+.about__badge-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: #25d366;
+  box-shadow: 0 0 0 3px color-mix(in srgb, #25d366 25%, transparent);
+}
+
+@media (max-width: 61.99em) {
+  .about__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about__portrait {
+    order: -1;
+    max-width: 17rem;
+  }
+
+  .about__title {
+    max-width: none;
+  }
+}
