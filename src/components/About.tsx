@@ -42,6 +42,14 @@ export function About() {
                 <Icon name="palette" size={14} className="tag__icon" />
                 UX Design
               </li>
+              <li className="tag">
+                <Icon name="palette" size={14} className="tag__icon" />
+                QA Tester
+              </li>
+              <li className="tag">
+                <Icon name="palette" size={14} className="tag__icon" />
+                Backend
+              </li>
             </ul>
           </Reveal>
 

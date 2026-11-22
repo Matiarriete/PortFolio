@@ -19,6 +19,8 @@ export type IconName =
   | 'check'
   | 'code'
   | 'palette'
+  | 'menu'
+  | 'close'
 
 /** Brand marks have to be filled paths to be recognisable. */
 const BRAND_PATHS: Partial<Record<IconName, string>> = {
@@ -59,6 +61,8 @@ const STROKE_PATHS: Partial<Record<IconName, string[]>> = {
   'chevron-down': ['M6 9.5l6 6 6-6'],
   'map-pin': ['M12 21s7-5.5 7-11a7 7 0 10-14 0c0 5.5 7 11 7 11z', 'M12 7.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z'],
   check: ['M20 6.5L9.5 17 4 11.5'],
+  menu: ['M4 7h16', 'M4 12h16', 'M4 17h16'],
+  close: ['M6 6l12 12', 'M18 6L6 18'],
   mail: ['M4 6h16v12H4z', 'M4 7l8 6 8-6'],
   code: ['M9 6l-6 6 6 6', 'M15 6l6 6-6 6'],
   palette: [

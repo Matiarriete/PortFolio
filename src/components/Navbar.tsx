@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useI18n } from '../i18n/context'
 import { useTheme } from '../theme/context'
 import { useScrollSpy } from '../hooks/useScrollSpy'
-import { navSections, profile } from '../data/content'
+import { navSections } from '../data/content'
 import { Icon } from './Icon'
 import './Navbar.css'
 
@@ -54,14 +54,8 @@ export function Navbar() {
   return (
     <header className="navbar" data-scrolled={scrolled} data-open={menuOpen}>
       <div className="navbar__inner">
-        <a href="#inicio" className="navbar__brand" onClick={() => setMenuOpen(false)}>
-          <span className="navbar__mark" aria-hidden="true">
-            MA
-          </span>
-          {profile.name}
-        </a>
 
-        <nav id="navbar-menu" className="navbar__nav" aria-label={dictionary.nav.home}>
+        <nav id="navbar-menu" className="navbar__nav" aria-label={dictionary.nav.mainNavigation}>
           <ul className="navbar__list">
             {navSections.map((section) => (
               <li key={section.id}>
@@ -82,16 +76,6 @@ export function Navbar() {
           <span className="navbar__divider" aria-hidden="true" />
           <ThemeToggle />
           <LanguageSwitcher />
-          <button
-            type="button"
-            className="icon-button navbar__toggle"
-            aria-expanded={menuOpen}
-            aria-controls="navbar-menu"
-            aria-label={menuOpen ? dictionary.nav.closeMenu : dictionary.nav.openMenu}
-            onClick={() => setMenuOpen((open) => !open)}
-          >
-            <Icon name="chevron-down" size={20} style={{ transform: menuOpen ? 'rotate(180deg)' : 'none' }} />
-          </button>
         </div>
       </div>
     </header>

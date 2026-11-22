@@ -9,11 +9,6 @@
   align-items: start;
 }
 
-.about__title {
-  margin-block: var(--space-2xs) var(--space-md);
-  max-width: 20ch;
-}
-
 .about__body {
   display: flex;
   flex-direction: column;
@@ -120,9 +115,5 @@
   .about__portrait {
     order: -1;
     max-width: 17rem;
-  }
-
-  .about__title {
-    max-width: none;
   }
 }

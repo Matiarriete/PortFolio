@@ -7,11 +7,15 @@ import { SectionHeading } from './SectionHeading'
 import './Contact.css'
 
 const SOCIAL_ICONS: Record<SocialLink['id'], IconName> = {
+  website: 'globe',
   github: 'github',
   linkedin: 'linkedin',
   whatsapp: 'whatsapp',
   email: 'mail',
 }
+
+/** mailto: must not open a new tab; everything else is an external site. */
+const INTERNAL_HREFS: Partial<Record<SocialLink['id'], true>> = { email: true }
 
 export function Contact() {
   const { dictionary, locale } = useI18n()
@@ -34,8 +38,8 @@ export function Contact() {
               <a
                 className="card contact-card"
                 href={social.href}
-                target={social.id === 'email' ? undefined : '_blank'}
-                rel="noopener noreferrer"
+                target={INTERNAL_HREFS[social.id] === true ? undefined : '_blank'}
+                rel={INTERNAL_HREFS[social.id] === true ? undefined : 'noopener noreferrer'}
                 style={{ '--contact-color': social.hoverColor } as CSSProperties}
               >
                 <span className="contact-card__icon" aria-hidden="true">

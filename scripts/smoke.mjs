@@ -115,7 +115,7 @@ await new Promise((r) => setTimeout(r, 50))
 const { document } = window
 const $ = (selector) => document.querySelector(selector)
 const $$ = (selector) => [...document.querySelectorAll(selector)]
-const text = (selector) => $(selector)?.textContent?.trim() ?? ''
+const text = (selector, scope = window.document) => scope.querySelector(selector)?.textContent?.trim() ?? ''
 
 /* --- Assertions ------------------------------------------------------------ */
 
@@ -131,32 +131,35 @@ check('header/nav exists', $('header.navbar nav') !== null)
 check('footer exists', $('footer') !== null)
 
 console.log('\n▸ Sections')
-for (const id of ['inicio', 'sobre-mi', 'habilidades', 'proyectos', 'contacto']) {
+for (const id of ['inicio', 'sobre-mi', 'experiencia', 'formacion', 'habilidades', 'proyectos', 'contacto']) {
   check(`section #${id}`, $(`#${id}`) !== null)
 }
 
 console.log('\n▸ Content (Spanish default)')
 check('h1 is the name', text('h1') === 'Matias Arriete', text('h1'))
-check('hero role rendered', text('.hero__role').includes('Front-End'), text('.hero__role'))
+check('hero role is QA/automation', text('.hero__role').includes('QA Tester'), text('.hero__role'))
+check('location is Sevilla', text('.hero__meta').includes('Sevilla'), text('.hero__meta'))
 check('CV link points to Drive', $('a[href*="drive.google.com"]') !== null)
 check('bio has 3 paragraphs', $$('#sobre-mi .about__body > p').length === 3)
 check('profile photo has alt text', ($('.about__photo')?.getAttribute('alt') ?? '').length > 0)
-check('12 skills rendered', $$('.skill').length === 12, `got ${$$('.skill').length}`)
+check('17 skills rendered as tags', $$('.skills__card .tag').length === 17, `got ${$$('.skills__card .tag').length}`)
+check('5 skill groups', $$('.skills__card').length === 5, `got ${$$('.skills__card').length}`)
 check('languages rendered', $$('.language').length === 2)
+const bands = $$('.language').map((card) => text('.language__band', card)).join('|')
+check('English is listed as B1', bands.includes('B1'), bands)
+
+console.log('\n▸ Timeline (from the CV)')
+check('2 work entries', $$('#experiencia .timeline__item').length === 2, `got ${$$('#experiencia .timeline__item').length}`)
+check('9 education entries', $$('#formacion .timeline__item').length === 9, `got ${$$('#formacion .timeline__item').length}`)
+check('Solera listed', text('#experiencia').includes('Solera'))
+check('Stellantis listed', text('#experiencia').includes('Stellantis'))
+check('UOC listed', text('#formacion').includes('Universitat Oberta'))
+check('ongoing roles are badged', $$('.timeline__badge').length === 2, `got ${$$('.timeline__badge').length}`)
+check('stacks rendered as tags', $$('#experiencia .timeline__tags .tag').length === 8, `got ${$$('#experiencia .timeline__tags .tag').length}`)
 
 console.log('\n▸ Accessibility')
 check('html lang is es', document.documentElement.getAttribute('lang') === 'es')
 check('data-theme applied', ['light', 'dark'].includes(document.documentElement.getAttribute('data-theme')))
-const progressbars = $$('[role="progressbar"]')
-check('every skill bar is a progressbar', progressbars.length === 12, `got ${progressbars.length}`)
-check(
-  'progressbar aria-valuenow matches its label percentage',
-  progressbars.every((bar) => {
-    const now = Number(bar.getAttribute('aria-valuenow'))
-    const text = bar.parentElement?.querySelector('.skill__value')?.textContent ?? ''
-    return Number.isFinite(now) && text.includes(`${now}%`)
-  }),
-)
 check('every image has an alt attribute', $$('img').every((img) => img.hasAttribute('alt')))
 check('nav links point at real sections', $$('.navbar__link').every((a) => {
   const href = a.getAttribute('href') ?? ''
@@ -167,6 +170,23 @@ check('external links are safe', $$('a[target="_blank"]').every((a) => {
   return rel.includes('noopener')
 }))
 check('decorative svgs are aria-hidden', $$('svg[aria-hidden="true"]').length > 0)
+check('each timeline card has a heading', $$('.timeline__card').every((c) => c.querySelector('h3') !== null))
+
+console.log('\n▸ Mobile menu toggle')
+const toggle = $('.navbar__toggle')
+check('hamburger button exists', toggle !== null)
+check('toggle controls the nav panel', toggle?.getAttribute('aria-controls') === 'navbar-menu')
+check('toggle starts collapsed', toggle?.getAttribute('aria-expanded') === 'false')
+check('header starts closed', $('.navbar')?.getAttribute('data-open') === 'false')
+toggle?.click()
+await new Promise((r) => setTimeout(r, 10))
+check('clicking opens the menu', toggle?.getAttribute('aria-expanded') === 'true')
+check('header reflects open state', $('.navbar')?.getAttribute('data-open') === 'true')
+check('page scroll is locked', document.body.style.overflow === 'hidden')
+toggle?.click()
+await new Promise((r) => setTimeout(r, 10))
+check('clicking again closes it', toggle?.getAttribute('aria-expanded') === 'false')
+check('scroll lock released', document.body.style.overflow !== 'hidden')
 
 console.log('\n▸ Language switch')
 // The switcher is a disclosure: open it before its options exist in the DOM.
@@ -184,13 +204,26 @@ if (englishButton !== undefined) {
   englishButton.click()
   await new Promise((r) => setTimeout(r, 30))
   check('html lang switched to en', document.documentElement.getAttribute('lang') === 'en')
-  check('title is in English', document.title.includes('Front-End'), document.title)
+  check('title is in English', document.title.includes('QA Tester'), document.title)
   check('URL carries ?lang=en', window.location.search.includes('lang=en'))
-  check('role switched to English', text('.hero__role').includes('Front-End Designer'))
-  check('nav is in English', $$('.navbar__link').map((a) => a.textContent).join('|') === 'Home|About|Projects|Contact')
+  check('role switched to English', text('.hero__role').includes('QA Tester'), text('.hero__role'))
+  check(
+    'nav is in English',
+    $$('.navbar__link').map((a) => a.textContent).join('|') ===
+      'Home|About|Experience|Education|Skills|Projects|Contact',
+    $$('.navbar__link').map((a) => a.textContent).join('|'),
+  )
   check('og:locale updated to en_US', $('meta[property="og:locale"]')?.content === 'en_US')
   check('canonical updated', ($('link[rel="canonical"]')?.href ?? '').includes('lang=en'))
-  check('skills levels in English', text('.skill__band').length > 0 && !text('.skill__band').includes('Avanzado'))
+  check(
+    'experience is in English',
+    text('#experiencia').includes('Fullstack Developer') && text('#experiencia').includes('Test automation'),
+    text('#experiencia').slice(0, 120),
+  )
+  check(
+    'education is in English',
+    text('#formacion').includes('Computer Science') && !text('#formacion').includes('Formación'),
+  )
 }
 
 console.log('\n▸ Reveal animations')
@@ -258,7 +291,9 @@ check('no SweetAlert', !bundle.includes('Swal'))
 check('no typed.js', !bundle.includes('Typed'))
 check('no Bootstrap classes', !$('.container-fluid') && !$('.navbar-dark'))
 check('no contact form', $('#form') === null)
-check('contact cards present', $$('.contact-card').length === 4)
+check('5 contact cards', $$('.contact-card').length === 5, `got ${$$('.contact-card').length}`)
+check('personal website linked', $('a[href="https://matiasarriete.com"]') !== null)
+check('mailto has no target=_blank', $('a[href^="mailto:"]')?.getAttribute('target') === null)
 
 /* --- Report ---------------------------------------------------------------- */
 

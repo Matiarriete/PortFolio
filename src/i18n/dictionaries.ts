@@ -7,28 +7,30 @@
 
 const es = {
   meta: {
-    title: 'Matias Arriete — Diseñador y Desarrollador Front-End',
+    title: 'Matias Arriete — QA Tester · Automatización',
     description:
-      'Soy Matias Arriete, diseñador y desarrollador front-end en España. HTML, CSS, JavaScript, React y diseño de experiencia de usuario.',
+      'Soy Matias Arriete, QA Tester en Sevilla. Automatización de pruebas con Java y Selenium, y desarrollo full-stack con React y Java.',
   },
 
   nav: {
     skipToContent: 'Saltar al contenido principal',
+    mainNavigation: 'Navegación principal',
     home: 'Inicio',
     about: 'Sobre mí',
+    experience: 'Experiencia',
+    education: 'Formación',
+    skills: 'Habilidades',
     projects: 'Proyectos',
     contact: 'Contacto',
-    openMenu: 'Abrir menú de navegación',
-    closeMenu: 'Cerrar menú de navegación',
     languageSwitcher: 'Cambiar de idioma',
     themeToggle: 'Cambiar entre tema claro y oscuro',
   },
 
   hero: {
     greeting: 'Hola, mi nombre es',
-    role: 'Diseñador y desarrollador Front-End',
+    role: 'QA Tester · Automatización',
     tagline:
-      'Diseño interfaces y las llevo al código. Me gusta que las cosas se vean bien y, todavía mejor, que funcionen bien.',
+      'Automatizo pruebas de API y front-end con Java y Selenium. Me pasa: cuando algo falla, no me conformo con el síntoma, busco la causa.',
     ctaCv: 'Ver mi CV',
     ctaAbout: 'Conoceme más',
     scrollHint: 'Desplazate para explorar',
@@ -37,27 +39,39 @@ const es = {
 
   about: {
     eyebrow: 'Sobre mí',
-    title: 'Diseño primero, código después',
+    title: 'Pruebas, código y muchas ganas de aprender',
     paragraphs: [
-      'Soy diseñador y desarrollador front-end y vivo en España. Mi interés por el diseño web empezó en la universidad, cuando un profesor me introdujo en este mundo y me enseñó que el buen diseño no es solo estética: es la forma en que una persona recorre una interfaz.',
-      'Después de un tiempo trabajando del lado visual, decidí llevarlo un paso más allá y meterme en la programación. Hoy combino las dos disciplinas —diseño y código— poniendo siempre la experiencia de usuario en el centro del producto.',
-      'Trabajo con metodologías ágiles, soy obsesivo con el detalle de los estados vacíos y los mensajes de error, y me importa tanto que el sitio cargue rápido como que se entienda a la primera.',
+      'Soy profesional altamente motivado, con una sólida capacidad de adaptación a entornos dinámicos y a la resolución de problemas. Enfocado en la excelencia y la mejora continua, aportando proactividad y una fuerte orientación al trabajo colaborativo.',
+      'Mi camino ha pasado por el diseño web, el desarrollo full-stack y ahora la automatización de pruebas. Ese recorrido me ha dado algo que no se aprende en un curso: saber comunicar con un equipo y entender por qué un fallo ocurre de verdad, no solo dónde.',
+      'Actualmente estudio Ingeniería Informática en la Universitat Oberta de Catalunya, y en Solera me dedico a automatizar pruebas de API y front-end con Java y Selenium.',
     ],
     photoAlt: 'Retrato de Matias Arriete',
   },
 
+  timeline: {
+    ongoing: 'Actualidad',
+    stackLabel: 'Tecnologías',
+  },
+
+  experience: {
+    eyebrow: 'Experiencia',
+    title: 'Dónde he trabajado',
+    description:
+      'Automatización de pruebas y desarrollo full-stack. Esto es lo que he hecho en cada empresa.',
+  },
+
+  education: {
+    eyebrow: 'Formación',
+    title: 'Qué he estudiado',
+    description:
+      'Ingeniería, ciclos formativos, bootcamps y certificaciones. La mayoría siguen siendo esto: aprender de forma continua.',
+  },
+
   skills: {
     eyebrow: 'Habilidades',
-    title: 'Lo que manejo',
+    title: 'Con qué trabajo',
     description:
-      'Este es el nivel real con el que me manejo hoy en cada herramienta. No es una lista inflada: es lo que he usado de verdad.',
-    levelLabels: {
-      high: 'Avanzado',
-      mid: 'Intermedio',
-      low: 'Iniciando',
-    },
-    levelAriaSuffix: 'de 100',
-    showLevel: 'Ver nivel',
+      'Estas son las áreas en las que trabajo. No invento porcentajes: prefiero que me juzgues por lo que he construido.',
   },
 
   languagesSection: {
@@ -116,28 +130,30 @@ export type Dictionary = Widen<typeof es>
 
 const en: Dictionary = {
   meta: {
-    title: 'Matias Arriete — Front-End Designer & Developer',
+    title: 'Matias Arriete — QA Tester · Automation',
     description:
-      "I'm Matias Arriete, a front-end designer and developer based in Spain. HTML, CSS, JavaScript, React and UX design.",
+      "I'm Matias Arriete, a QA Tester in Sevilla, Spain. Test automation with Java and Selenium, plus full-stack development with React and Java.",
   },
 
   nav: {
     skipToContent: 'Skip to main content',
+    mainNavigation: 'Main navigation',
     home: 'Home',
     about: 'About',
+    experience: 'Experience',
+    education: 'Education',
+    skills: 'Skills',
     projects: 'Projects',
     contact: 'Contact',
-    openMenu: 'Open navigation menu',
-    closeMenu: 'Close navigation menu',
     languageSwitcher: 'Change language',
     themeToggle: 'Switch between light and dark theme',
   },
 
   hero: {
     greeting: "Hi, my name is",
-    role: 'Front-End Designer & Developer',
+    role: 'QA Tester · Automation',
     tagline:
-      'I design interfaces and I take them all the way to the code. I like things to look good and — even better — to work well.',
+      'I automate API and front-end tests with Java and Selenium. When something breaks I do not settle for the symptom — I go after the cause.',
     ctaCv: 'View my CV',
     ctaAbout: 'Get to know me',
     scrollHint: 'Scroll to explore',
@@ -146,27 +162,39 @@ const en: Dictionary = {
 
   about: {
     eyebrow: 'About',
-    title: 'Design first, code after',
+    title: 'Testing, code and a lot of appetite for learning',
     paragraphs: [
-      "I'm a front-end designer and developer based in Spain. My interest in web design started at university, when a professor introduced me to this world and taught me that good design isn't only aesthetics: it's the way a person moves through an interface.",
-      "After spending some time working on the visual side, I decided to take it one step further and get into programming. Today I combine both disciplines — design and code — always putting user experience at the centre of the product.",
-      'I work with agile methodologies, I obsess over empty states and error messages, and I care as much about a site loading fast as about it making sense at first glance.',
+      'I am a highly motivated professional with a solid ability to adapt to dynamic environments and to problem-solving. Focused on excellence and continuous improvement, bringing proactivity and a strong focus on collaborative work.',
+      'My path has run through web design, full-stack development and now test automation. That journey has given me something no course teaches: how to work with a team, and how to understand why a failure actually happens, not just where.',
+      'I currently study Computer Science at the Open University of Catalonia, and at Solera I automate API and front-end tests with Java and Selenium.',
     ],
     photoAlt: 'Portrait of Matias Arriete',
+  },
+
+timeline: {
+    ongoing: 'Present',
+    stackLabel: 'Technologies',
+  },
+
+  experience: {
+    eyebrow: 'Experience',
+    title: 'Where I have worked',
+    description:
+      'Test automation and full-stack development. This is what I actually did at each company.',
+  },
+
+  education: {
+    eyebrow: 'Education',
+    title: 'What I have studied',
+    description:
+      'Engineering degrees, vocational courses, bootcamps and certifications. Most of it still ongoing: I learn continuously.',
   },
 
   skills: {
     eyebrow: 'Skills',
     title: 'What I work with',
     description:
-      "This is the actual level I'm at with each tool today. Not an inflated list: it's what I've really used.",
-    levelLabels: {
-      high: 'Advanced',
-      mid: 'Intermediate',
-      low: 'Getting started',
-    },
-    levelAriaSuffix: 'out of 100',
-    showLevel: 'Show level',
+      'These are the areas I work in. I do not invent percentages: judge me by what I have built.',
   },
 
   languagesSection: {

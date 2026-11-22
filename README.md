@@ -68,6 +68,22 @@ no flash of the wrong theme. Both themes define the same token names in
 Every text/background pair in both themes was verified to clear WCAG 2.1 AA,
 including 3:1 for interactive borders (WCAG 1.4.11).
 
+## CV data
+
+`src/data/content.ts` mirrors the CV in `docs/` as closely as possible:
+
+| Section | Source |
+| --- | --- |
+| `profile` | Name, role, location, contact, CV link |
+| `experience` | Solera (QA Tester) and Stellantis (Fullstack intern) |
+| `education` | UOC, FP Jobii, Solera, CoderHouse, IUA, WhiteSuit, Cisco, Nextu, Nuevo Siglo |
+| `skillGroups` | The CV's "áreas de experiencia", as tags |
+| `spokenLanguages` | Spanish (native), English (B1) |
+
+Skills are rendered as tags rather than percentage bars: the CV lists areas of
+experience without proficiency levels, and inventing percentages would
+contradict it. Spoken languages keep a CEFR band because that one is stated.
+
 Animations are opt-out: `prefers-reduced-motion: reduce` disables the scroll
 reveals and transitions.
 

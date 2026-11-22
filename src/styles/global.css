@@ -275,6 +275,15 @@ ol[class] {
 
 /* --- Tags ----------------------------------------------------------------- */
 
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3xs);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 .tag {
   display: inline-flex;
   align-items: center;
