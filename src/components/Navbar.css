@@ -1,0 +1,317 @@
+.navbar {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: var(--z-header);
+  min-height: var(--header-height);
+  padding: 1%;
+  padding-inline: clamp(1.25rem, 5vw, 3rem);
+  border-bottom: 1px solid transparent;
+  /* backdrop-filter is deliberately not transitioned: any non-null value
+     makes this header the containing block for the viewport-fixed drawer. */
+  transition:
+    background-color var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out);
+}
+
+/* Transparent over the hero, frosted once the page scrolls. */
+.navbar[data-scrolled='true'],
+.navbar[data-open='true'] {
+  background-color: color-mix(in srgb, var(--bg) 80%, transparent);
+  border-bottom-color: var(--border);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+}
+
+/* A computed backdrop-filter makes the header a containing block for fixed
+   descendants, which would shrink the drawer to the header's height. */
+.navbar[data-open='true'] {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* The default brand outline would be invisible on the brand-coloured panel.
+   The language dropdown keeps its own surface background, so it needs the
+   normal brand outline instead. */
+.navbar[data-open='true'] :focus-visible {
+  outline-color: var(--on-brand);
+}
+
+.navbar[data-open='true'] .lang__menu :focus-visible {
+  outline-color: var(--brand);
+}
+
+/* Three tracks, so the nav sits on the true centre of the bar regardless of how
+   wide the actions cluster gets. `space-between` would drift it left. */
+.navbar__inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+}
+
+.navbar__nav {
+  display: flex;
+  align-items: center;
+  grid-column: 2;
+}
+
+.navbar__list {
+  display: flex;
+  justify-items: center;
+  gap: var(--space-3xs);
+}
+
+.navbar__link {
+  position: relative;
+  display: block;
+  padding: 0.45em 0.85em;
+  border-radius: var(--radius-pill);
+  color: var(--text-muted);
+  font-size: var(--step--1);
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    color var(--dur-base) var(--ease-out),
+    background-color var(--dur-base) var(--ease-out);
+}
+
+.navbar__link:hover {
+  background-color: var(--surface-2);
+  color: var(--text);
+}
+
+.navbar__link[aria-current='true'] {
+  color: var(--brand);
+  font-weight: 600;
+}
+
+.navbar__link::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0.1rem;
+  width: 0;
+  height: 2px;
+  border-radius: var(--radius-pill);
+  background-color: var(--brand);
+  transform: translateX(-50%);
+  transition: width var(--dur-base) var(--ease-out);
+}
+
+.navbar__link[aria-current='true']::after {
+  width: 1.15rem;
+}
+
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  grid-column: 3;
+  gap: var(--space-3xs);
+}
+
+.navbar__divider {
+  width: 1px;
+  height: 1.2rem;
+  margin-inline: var(--space-3xs);
+  background-color: var(--border);
+}
+
+.icon-button {
+  display: grid;
+  place-items: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background-color: transparent;
+  color: var(--text-muted);
+  transition:
+    color var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out),
+    background-color var(--dur-base) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+
+.icon-button:hover {
+  border-color: var(--border-strong);
+  background-color: var(--surface);
+  color: var(--brand);
+  transform: translateY(-1px);
+}
+
+/* Hamburger: hidden on desktop, where the links are always visible. It must
+   follow .icon-button (same specificity) to override its display: grid. */
+.navbar__toggle {
+  display: none;
+}
+
+.lang {
+  position: relative;
+}
+
+.lang__code {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.lang__menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  z-index: var(--z-overlay);
+  min-width: 9rem;
+  padding: var(--space-3xs);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background-color: var(--surface);
+  box-shadow: var(--shadow-lg);
+  animation: lang-in var(--dur-base) var(--ease-out);
+}
+
+@keyframes lang-in {
+  from {
+    opacity: 0;
+    transform: translateY(-0.35rem) scale(0.97);
+  }
+}
+
+.lang__option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: 0.5em 0.75em;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background-color: transparent;
+  color: var(--text-muted);
+  font-size: var(--step--1);
+  font-weight: 500;
+  text-align: left;
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+
+.lang__option:hover {
+  background-color: var(--surface-2);
+  color: var(--text);
+}
+
+.lang__option[aria-checked='true'] {
+  color: var(--brand);
+  font-weight: 600;
+}
+
+/* ============================================================================
+   Mobile: one full-screen drawer sliding in from the right. The toggle stays
+   above it as the close button; one set of links, two layouts, no duplicates.
+   ========================================================================== */
+
+/* Eight nav links plus actions do not fit below ~1088px. */
+@media (max-width: 67.99em) {
+  .navbar__toggle {
+    display: grid;
+    position: relative;
+    z-index: 1;
+  }
+
+  .navbar__divider {
+    display: none;
+  }
+
+  /* The panel leaves the grid flow entirely, so the bar collapses back to a
+     single right-aligned cluster. */
+  .navbar__inner {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  /* Keep the controls reachable (and legible) over the brand-coloured panel. */
+  .navbar__actions {
+    position: relative;
+    z-index: 1;
+    grid-column: auto;
+  }
+
+  .navbar[data-open='true'] .navbar__actions .icon-button {
+    border-color: color-mix(in srgb, var(--on-brand) 45%, transparent);
+    color: var(--on-brand);
+  }
+
+  .navbar[data-open='true'] .navbar__actions .icon-button:hover {
+    background-color: color-mix(in srgb, var(--on-brand) 14%, transparent);
+    color: var(--on-brand);
+  }
+
+  .navbar__nav {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-content: safe center;
+    gap: var(--space-md);
+    padding: var(--space-xl) clamp(1.25rem, 5vw, 3rem);
+    background-color: var(--brand);
+    overflow-y: auto;
+    visibility: hidden;
+    transform: translateX(100%);
+    /* Hiding on close is immediate: the header regains its blur at once, so
+       animating a viewport-fixed panel would make it jump mid-transition. */
+    transition: transform var(--dur-base) var(--ease-out);
+  }
+
+  .navbar[data-open='true'] .navbar__nav {
+    visibility: visible;
+    transform: translateX(0);
+  }
+
+  .navbar__list {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2xs);
+  }
+
+  .navbar__link {
+    padding: 0.5em 1em;
+    border-radius: var(--radius-md);
+    color: var(--on-brand);
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .navbar__link:hover,
+  .navbar__link[aria-current='true'] {
+    background-color: color-mix(in srgb, var(--on-brand) 16%, transparent);
+    color: var(--on-brand);
+  }
+
+  .navbar__link::after {
+    display: none;
+  }
+}
+
+/* Short viewports: keep all eight links reachable by scrolling. Scoped to mobile
+   so the desktop links do not outgrow --header-height and hide anchor targets. */
+@media (max-width: 67.99em) and (max-height: 40rem) {
+  .navbar__nav {
+    padding-block: var(--space-md);
+  }
+
+  .navbar__link {
+    font-size: var(--step-1);
+  }
+}

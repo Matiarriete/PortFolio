@@ -1,177 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" 
-        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="styles/styles.css">
+<!doctype html>
+<html lang="es" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-    <title>Matias Arriete - Portfolio</title>
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-md fixed-top navbar-dark">
-            <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarContent">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a href="#inicio" class="nav-link text-black">Inicio</a></li>
-                        <li class="nav-item"><a href="#sobreMi" class="nav-link text-black">Sobre Mi</a></li>
-                        <li class="nav-item"><a href="#experiencia" class="nav-link text-black">Experiencia</a></li>
-                        <li class="nav-item"><a href="#contactame" class="nav-link text-black">Contactame</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-black" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Español</a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="pages/english.html">Ingles</a></li>
-                            </ul>
-                          </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light rounded-2" tabindex="0">
-        <div id="inicio" class="p-3">
-            <lottie-player 
-                src="https://assets7.lottiefiles.com/private_files/lf30_wqypnpu5.json"  
-                background="transparent" speed="0.75" loop autoplay id="videoInicio">
-            </lottie-player>
-            <div class="description">
-                <p id="pTitulo">Hola, mi nombre es</p>
-                <h1>Matias Arriete</h1>
-                <p id="pDesarrollador">Desarrollador Web</p>
-                <div class="cvConocerMas">
-                    <button>
-                        <a href="https://drive.google.com/file/d/1PdtMvIVxJ_td-ALDQxiHkjq-GRAT55IU/view?usp=sharing" target="_blank" >Aqui te dejo mi CV</a>
-                    </button>
-                    <button>
-                        <a href="#sobreMi">Conoceme mas</a>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div id="sobreMi">
-            <div class="GlobalSobreMi">
-                <h2 id="tituloSobreMi">Sobre mi<hr></h2>
-                <div class="Info">
-                    <p id="pTextInfo">Hola, soy un Diseñador y desarrollador Front-End
-                                      viviendo en España.
-                                      Mi interés en el diseño web comenzó gracias a 
-                                      un profesor universitario quien me introdujo en
-                                      este amplio y divertido mundo. Después de un tiempo 
-                                      decidí llevar ese mundo a programación, comencé a 
-                                      tomar cursos y crecer  en esta nueva aventura
-                    </p>
-                    <div id="contImg">
-                        <div id="imgPerfil"></div>
-                    </div>
-                </div>
-                <div class="abilitiesLeng">
-                    <div class="abilities" id="abilities">
-                        <h3>HABILIDADES</h3>
-                    </div>
-                    <div class="lenguages">
-                        <h3>IDIOMAS</h3>
-                        <div class="contLenguages">
-                            <p>Ingles</p>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="contLenguages">
-                            <p>Español</p>
-                            <div class="progress">
-                                <div class="progress-bar" aria-label="Basic example" style="width: 100%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="experiencia">
-            <div class="GlobalExperiencia">
-                <h2 id="tituloExperiencia">Experiencia<hr></h2>
-                <div class="contenedorVideoDesc">
-                    <video id="videoProy" src="images/2022-09-16-10-11-50.mp4" autoplay loop></video>  
-                    <div class="contDesc">
-                        <h3>Sitio Web Iglesia Tiempo Nuevo</h3>
-                        <p>Pagina diseñada como proyecto para curso de desarrollo web brindado por CoderHouse.
-                            Esta pagina fue basada en la informacion brindada por dicha iglesia.
-                        </p>
-                        <div class="contInfo">
-                            <a href="https://matiarriete.github.io/Pagina-Iglesia---Matias-Arriete/" target="_blank"><i class="bi bi-globe2"></i></a>
-                            <a href="https://github.com/Matiarriete/Pagina-Iglesia---Matias-Arriete" target="_blank"><i class="bi bi-github"></i></a>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="contactame">
-            <div class="Globalcontactame">
-                <h2 id="tituloContactame">Contactame<hr></h2>
-                <div class="contFormRedes">
-                    <div class="formContactame">
-                        <form id="form" class="needs-validation" novalidate> 
-                            <div class="form-floating">
-                                <input type="text" class="form-control" required placeholder="Nombre"
-                                id="floatingNombre" name="floatingNombre">
-                                <label for="floatingNombre">Nombre</label>
-                                <div class="invalid-feedback">Debe completar los datos</div>
-                            </div>
-                            <div class="form-floating">
-                                <input type="text" class="form-control" required placeholder="Mail"
-                                id="floatingMail" name="floatingMail">
-                                <label for="floatingMail">Mail</label>
-                                <div class="invalid-feedback">Debe completar los datos</div>
-                            </div>
-                            <div class="form-floating">
-                                <textarea class="form-control" required placeholder="Mensaje"
-                                id="floatingMensaje" name="floatingMensaje"></textarea>
-                                <label for="floatingMensaje">Mensaje</label>
-                                <div class="invalid-feedback">Debe completar los datos</div>
-                            </div>
-                            <div class="botonContacto">
-                                <button class="btn fw-bold" id="btnContacto" type="submit">Enviar</button>
-                            </div>
-                        </form>            
-                    </div>
-                    <h3 id="separatorRedes">O</h3>
-                    <div class="contRedes">
-                        <div class="redes">
-                            <a id="github" href="https://github.com/Matiarriete/" target="_blank"><i class="bi bi-github"></i></a>
-                            <a id="linkedIn" href="https://www.linkedin.com/in/matias-arriete-82686a161/" target="_blank"><i class="bi bi-linkedin"></i></a>
-                            <a id="wsp" href=" https://wa.me/34611228127" target="_blank"><i class="bi bi-whatsapp"></i></a>
-                            <a id="mail" href="mailto:arrietematias@gmail.com" target="_blank"><i class="bi bi-envelope-fill"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-            
-        </div>
-    </div>
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <script src="scripts/habilidades.js"></script>
-    <script src="scripts/nav.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
-    </script>
-    <script src="scripts/sendMail.js"></script>
-    <script 
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" 
-      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous">
-    </script>
+    <title>Matias Arriete — Diseñador y Desarrollador Front-End</title>
+    <meta
+      name="description"
+      content="Soy Matias Arriete, diseñador y desarrollador front-end en España. HTML, CSS, JavaScript, React y diseño de experiencia de usuario."
+    />
+    <meta name="author" content="Matias Arriete" />
+    <meta name="robots" content="index, follow" />
+
+    <link rel="canonical" href="https://matiarriete.github.io/PortFolio/" />
+    <link rel="alternate" hreflang="es" href="https://matiarriete.github.io/PortFolio/" />
+    <link rel="alternate" hreflang="en" href="https://matiarriete.github.io/PortFolio/?lang=en" />
+    <link rel="alternate" hreflang="x-default" href="https://matiarriete.github.io/PortFolio/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Matias Arriete" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:title" content="Matias Arriete — Diseñador y Desarrollador Front-End" />
+    <meta
+      property="og:description"
+      content="Diseño interfaces y las llevo al código. HTML, CSS, JavaScript, React y diseño de experiencia de usuario."
+    />
+    <meta property="og:url" content="https://matiarriete.github.io/PortFolio/" />
+    <meta property="og:image" content="https://matiarriete.github.io/PortFolio/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Portafolio de Matias Arriete, desarrollador front-end" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Matias Arriete — Diseñador y Desarrollador Front-End" />
+    <meta
+      name="twitter:description"
+      content="Diseño interfaces y las llevo al código. HTML, CSS, JavaScript, React y diseño de experiencia de usuario."
+    />
+    <meta name="twitter:image" content="https://matiarriete.github.io/PortFolio/og-image.png" />
+
+    <!-- Icons & PWA -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#faf7f4" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0e1512" media="(prefers-color-scheme: dark)" />
+
+    <!-- Applies the persisted theme before first paint so there is no flash of the wrong theme. -->
     <script>
-        const inicio = document.getElementById('inicio');
-        inicio.style = "height: " + window.innerHeight + "px";
+      ;(function () {
+        try {
+          var stored = localStorage.getItem('portfolio-theme')
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+          var theme =
+            stored === 'light' || stored === 'dark' ? stored : prefersDark ? 'dark' : 'light'
+          document.documentElement.setAttribute('data-theme', theme)
+        } catch (error) {
+          document.documentElement.setAttribute('data-theme', 'light')
+        }
+      })()
     </script>
-</body>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <div style="padding: 2rem; font-family: system-ui, sans-serif">
+        <h1>Matias Arriete — Diseñador y Desarrollador Front-End</h1>
+        <p>Este sitio necesita JavaScript para funcionar. Puedes contactarme en arrietematias@gmail.com.</p>
+      </div>
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

@@ -1,0 +1,7 @@
+# Everything under /assets/ is the site's own JS/CSS/media bundle — crawlers
+# need it to render the page, so it must stay crawlable.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://matiarriete.github.io/PortFolio/sitemap.xml
