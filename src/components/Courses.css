@@ -5,7 +5,7 @@
 
 .courses__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
   gap: var(--space-md);
   list-style: none;
   padding: 0;

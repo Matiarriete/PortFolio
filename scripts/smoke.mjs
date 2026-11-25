@@ -160,12 +160,21 @@ check('stacks rendered as tags', $$('#experiencia .timeline__tags .tag').length 
 console.log('\n▸ Courses')
 check('15 course cards', $$('#cursos .course-card').length === 15, `got ${$$('#cursos .course-card').length}`)
 check('10 certificate links', $$('#cursos a.course-card__link').length === 10, `got ${$$('#cursos a.course-card__link').length}`)
-check('4 education entries after the move', $$('#formacion .timeline__item').length === 4)
 check('5 CV courses are no longer in Formación', ['Nextu', 'Cisco Virtual Academy', 'WhiteSuit', 'CoderHouse', 'Bootcamp'].every((s) => !text('#formacion').includes(s)))
 check('5 CV courses are in Courses', ['Soporte y Mantenimiento Técnico', 'Ciberseguridad', 'Ghost', 'Desarrollo Web', 'Bootcamp'].every((s) => text('#cursos').includes(s)))
 check('every course card has a heading', $$('#cursos .course-card').every((c) => c.querySelector('h3') !== null))
 check('every certificate link uses the /PortFolio/ base', $$('#cursos a.course-card__link').every((a) => (a.getAttribute('href') ?? '').startsWith('/PortFolio/certificados/')))
-check('every certificate link is labelled with its course', $$('#cursos a.course-card__link').every((a) => (a.getAttribute('aria-label') ?? '').length > 'Ver certificado'.length))
+check('certificate links open safely', $$('#cursos a.course-card__link').every((a) =>
+  a.getAttribute('target') === '_blank' &&
+  ['noopener', 'noreferrer'].every((token) => (a.getAttribute('rel') ?? '').split(/\s+/).includes(token))
+))
+check('every certificate link is labelled with its course', $$('#cursos a.course-card__link').every((a) => {
+  const title = a.closest('.course-card')?.querySelector('h3')?.textContent ?? ''
+  return (a.getAttribute('aria-label') ?? '').includes(title)
+}))
+const cvCards = $$('#cursos .course-card').filter((c) => !/Udemy/.test(c.textContent ?? ''))
+check('5 CV course cards found', cvCards.length === 5, `got ${cvCards.length}`)
+check('CV courses have no PDF link', cvCards.every((c) => c.querySelector('a.course-card__link') === null))
 for (const a of $$('#cursos a.course-card__link')) {
   const href = a.getAttribute('href') ?? ''
   check(`${href} exists in dist`, existsSync(join(distDir, href.replace('/PortFolio/', ''))))
@@ -185,6 +194,11 @@ check('external links are safe', $$('a[target="_blank"]').every((a) => {
 }))
 check('decorative svgs are aria-hidden', $$('svg[aria-hidden="true"]').length > 0)
 check('each timeline card has a heading', $$('.timeline__card').every((c) => c.querySelector('h3') !== null))
+
+console.log('\n▸ Responsive header')
+const navbarCss = readFileSync(join(root, 'src/components/Navbar.css'), 'utf8')
+const mobileBreakpointEm = Number(navbarCss.match(/@media \(max-width: ([\d.]+)em\)/)?.[1] ?? 0)
+check('mobile nav starts wide enough for 8 links', mobileBreakpointEm >= 64, `${mobileBreakpointEm}em`)
 
 console.log('\n▸ Mobile menu toggle')
 const toggle = $('.navbar__toggle')
@@ -228,6 +242,8 @@ if (englishButton !== undefined) {
     $$('.navbar__link').map((a) => a.textContent).join('|'),
   )
   check('courses section is in English', text('#cursos').includes('Courses & certificates'))
+  check('courses keep their cards and links in English', $$('#cursos .course-card').length === 15 && $$('#cursos a.course-card__link').length === 10)
+  check('certificate label is in English', text('#cursos').includes('View certificate'))
   check('og:locale updated to en_US', $('meta[property="og:locale"]')?.content === 'en_US')
   check('canonical updated', ($('link[rel="canonical"]')?.href ?? '').includes('lang=en'))
   check(

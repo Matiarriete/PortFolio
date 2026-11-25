@@ -97,8 +97,8 @@ To add a certificate:
 2. Add an entry to `courses` in `src/data/content.ts` with `id`, `title`,
    `provider` and `certificate` set to the path relative to `public/`, e.g.
    `certificados/mi-certificado.pdf`.
-3. Add its ES/EN strings if the copy is new; the "Ver certificado" label already
-   exists in `src/i18n/dictionaries.ts`.
+3. Add its ES/EN strings if the copy is new; the view-certificate labels already
+   exist in both dictionaries in `src/i18n/dictionaries.ts`.
 
 CV courses without a PDF omit `certificate` and render no link. The component
 prefixes every href with `import.meta.env.BASE_URL`, so the links keep working

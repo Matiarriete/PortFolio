@@ -197,7 +197,8 @@
    One set of links, two layouts — no duplicated markup.
    ========================================================================== */
 
-@media (max-width: 47.99em) {
+/* Eight nav links plus brand and actions do not fit below ~1088px. */
+@media (max-width: 67.99em) {
   .navbar__toggle {
     display: grid;
   }
