@@ -120,6 +120,13 @@ export const navSections = [
 
 export const socials: readonly SocialLink[] = [
     {
+    id: 'website',
+    label: { es: 'Web personal', en: 'Website' },
+    handle: 'matiasarriete.com',
+    href: 'https://matiasarriete.com',
+    hoverColor: '#1e4d3b',
+  },
+    {
     id: 'github',
     label: { es: 'GitHub', en: 'GitHub' },
     handle: '@Matiarriete',

@@ -76,6 +76,20 @@ export function Navbar() {
           <span className="navbar__divider" aria-hidden="true" />
           <ThemeToggle />
           <LanguageSwitcher />
+          <button
+            type="button"
+            className="icon-button navbar__toggle"
+            aria-expanded={menuOpen}
+            aria-controls="navbar-menu"
+            aria-label={menuOpen ? dictionary.nav.closeMenu : dictionary.nav.openMenu}
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <Icon
+              name="chevron-down"
+              size={20}
+              style={{ transform: menuOpen ? 'rotate(180deg)' : 'none' }}
+            />
+          </button>
         </div>
       </div>
     </header>
