@@ -123,11 +123,6 @@
   background-color: var(--border);
 }
 
-/* Hamburger: hidden on desktop, where the links are always visible. */
-.navbar__toggle {
-  display: none;
-}
-
 .icon-button {
   display: grid;
   place-items: center;
@@ -149,6 +144,12 @@
   background-color: var(--surface);
   color: var(--brand);
   transform: translateY(-1px);
+}
+
+/* Hamburger: hidden on desktop, where the links are always visible. It must
+   follow .icon-button (same specificity) to override its display: grid. */
+.navbar__toggle {
+  display: none;
 }
 
 .lang {

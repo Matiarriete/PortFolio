@@ -229,6 +229,19 @@ const navbarCss = readFileSync(join(root, 'src/components/Navbar.css'), 'utf8')
 const mobileBlock = navbarCss.split('@media (max-width: ').slice(1).find((part) => part.includes('.navbar__toggle'))
 const mobileBreakpointEm = Number(mobileBlock?.match(/^([\d.]+)em\)/)?.[1] ?? 0)
 check('mobile nav starts wide enough for 8 links', mobileBreakpointEm >= 64, `${mobileBreakpointEm}em`)
+// Compute the real cascade on the desktop rules only: the toggle carries both
+// .navbar__toggle and .icon-button, so source order decides between them.
+const probeStyle = document.createElement('style')
+probeStyle.textContent = navbarCss.split('@media ')[0]
+document.head.appendChild(probeStyle)
+const probeToggle = document.createElement('div')
+probeToggle.className = 'icon-button navbar__toggle'
+document.body.appendChild(probeToggle)
+const desktopToggleDisplay = window.getComputedStyle(probeToggle).display
+probeToggle.remove()
+probeStyle.remove()
+check('hamburger is hidden on desktop', desktopToggleDisplay === 'none', desktopToggleDisplay)
+check('hamburger is shown at mobile widths', /\.navbar__toggle\s*\{[^}]*display:\s*grid/.test(mobileBlock))
 check('open header drops backdrop-filter so the drawer fills the viewport',
   /\.navbar\[data-open='true'\][\s\S]{0,160}backdrop-filter:\s*none/.test(navbarCss))
 const headerTransition = navbarCss.match(/\.navbar\s*\{([\s\S]*?)\}/)?.[1]?.match(/transition:\s*([^;]+);/)?.[1] ?? ''
