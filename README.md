@@ -76,13 +76,34 @@ including 3:1 for interactive borders (WCAG 1.4.11).
 | --- | --- |
 | `profile` | Name, role, location, contact, CV link |
 | `experience` | Solera (QA Tester) and Stellantis (Fullstack intern) |
-| `education` | UOC, FP Jobii, Solera, CoderHouse, IUA, WhiteSuit, Cisco, Nextu, Nuevo Siglo |
+| `education` | Long-form academic training: UOC, FP Jobii, IUA, Nuevo Siglo |
+| `courses` | 10 Udemy certificates with PDF, plus 5 short CV courses (Solera, CoderHouse, WhiteSuit, Cisco, Nextu) |
 | `skillGroups` | The CV's "áreas de experiencia", as tags |
 | `spokenLanguages` | Spanish (native), English (B1) |
 
 Skills are rendered as tags rather than percentage bars: the CV lists areas of
 experience without proficiency levels, and inventing percentages would
 contradict it. Spoken languages keep a CEFR band because that one is stated.
+
+## Cursos y certificados
+
+The `#cursos` section keeps short courses and certifications out of the longer
+`education` timeline. The original Udemy PDFs live in `public/certificados/`;
+they are served as static files, never imported into the JS bundle.
+
+To add a certificate:
+
+1. Drop the PDF into `public/certificados/` using a kebab-case filename.
+2. Add an entry to `courses` in `src/data/content.ts` with `id`, `title`,
+   `provider` and `certificate` set to the path relative to `public/`, e.g.
+   `certificados/mi-certificado.pdf`.
+3. Add its ES/EN strings if the copy is new; the "Ver certificado" label already
+   exists in `src/i18n/dictionaries.ts`.
+
+CV courses without a PDF omit `certificate` and render no link. The component
+prefixes every href with `import.meta.env.BASE_URL`, so the links keep working
+under the `/PortFolio/` GitHub Pages subpath. The smoke test checks that all
+referenced PDFs exist in `dist/`.
 
 Animations are opt-out: `prefers-reduced-motion: reduce` disables the scroll
 reveals and transitions.
