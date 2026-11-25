@@ -323,8 +323,11 @@ check('no SweetAlert', !bundle.includes('Swal'))
 check('no typed.js', !bundle.includes('Typed'))
 check('no Bootstrap classes', !$('.container-fluid') && !$('.navbar-dark'))
 check('no contact form', $('#form') === null)
-check('5 contact cards', $$('.contact-card').length === 5, `got ${$$('.contact-card').length}`)
-check('personal website linked', $('a[href="https://matiasarriete.com"]') !== null)
+check('4 contact cards', $$('.contact-card').length === 4, `got ${$$('.contact-card').length}`)
+check('no personal website card', $('a[href="https://matiasarriete.com"]') === null)
+check('contact channels are GitHub, LinkedIn, WhatsApp and email',
+  $$('.contact-card').map((a) => a.getAttribute('href')).every((href) =>
+    ['https://github.com/', 'https://www.linkedin.com/', 'https://wa.me/', 'mailto:'].some((p) => href?.startsWith(p))))
 check('mailto has no target=_blank', $('a[href^="mailto:"]')?.getAttribute('target') === null)
 
 /* --- Report ---------------------------------------------------------------- */

@@ -7,7 +7,6 @@ import { SectionHeading } from './SectionHeading'
 import './Contact.css'
 
 const SOCIAL_ICONS: Record<SocialLink['id'], IconName> = {
-  website: 'globe',
   github: 'github',
   linkedin: 'linkedin',
   whatsapp: 'whatsapp',

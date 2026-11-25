@@ -24,7 +24,7 @@ export interface AvatarSources {
 }
 
 export interface SocialLink {
-  id: 'github' | 'linkedin' | 'whatsapp' | 'email' | 'website'
+  id: 'github' | 'linkedin' | 'whatsapp' | 'email'
   label: LocalizedText
   handle: string
   href: string
@@ -130,13 +130,6 @@ export const navSections = [
 ] as const
 
 export const socials: readonly SocialLink[] = [
-  {
-    id: 'website',
-    label: { es: 'Web personal', en: 'Website' },
-    handle: 'matiasarriete.com',
-    href: 'https://matiasarriete.com',
-    hoverColor: '#1e4d3b',
-  },
   {
     id: 'github',
     label: { es: 'GitHub', en: 'GitHub' },
