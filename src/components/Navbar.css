@@ -193,14 +193,16 @@
 }
 
 /* ============================================================================
-   Mobile: the nav becomes a full-height panel below the header bar.
-   One set of links, two layouts — no duplicated markup.
+   Mobile: one full-screen drawer sliding in from the right. The toggle stays
+   above it as the close button; one set of links, two layouts, no duplicates.
    ========================================================================== */
 
 /* Eight nav links plus actions do not fit below ~1088px. */
 @media (max-width: 67.99em) {
   .navbar__toggle {
     display: grid;
+    position: relative;
+    z-index: 1;
   }
 
   .navbar__divider {
@@ -214,54 +216,69 @@
     justify-content: flex-end;
   }
 
+  /* Keep the controls reachable (and legible) over the brand-coloured panel. */
   .navbar__actions {
+    position: relative;
+    z-index: 1;
     grid-column: auto;
+  }
+
+  .navbar[data-open='true'] .navbar__actions .icon-button {
+    border-color: color-mix(in srgb, var(--on-brand) 45%, transparent);
+    color: var(--on-brand);
+  }
+
+  .navbar[data-open='true'] .navbar__actions .icon-button:hover {
+    background-color: color-mix(in srgb, var(--on-brand) 14%, transparent);
+    color: var(--on-brand);
   }
 
   .navbar__nav {
     position: fixed;
-    inset: var(--header-height) 0 auto 0;
+    inset: 0;
+    z-index: 0;
     flex-direction: column;
-    align-items: stretch;
-    gap: var(--space-2xs);
-    padding: var(--space-md) clamp(1.25rem, 5vw, 3rem) var(--space-xl);
-    border-top: 1px solid var(--border);
-    background-color: var(--bg);
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    padding: var(--space-xl) clamp(1.25rem, 5vw, 3rem);
+    background-color: var(--brand);
     overflow-y: auto;
-    opacity: 0;
     visibility: hidden;
-    transform: translateY(-0.75rem);
+    transform: translateX(100%);
     transition:
-      opacity var(--dur-base) var(--ease-out),
       transform var(--dur-base) var(--ease-out),
       visibility var(--dur-base);
   }
 
   .navbar[data-open='true'] .navbar__nav {
-    opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translateX(0);
   }
 
   .navbar__list {
     flex-direction: column;
-    align-items: stretch;
-    gap: var(--space-3xs);
+    align-items: center;
+    gap: var(--space-2xs);
   }
 
   .navbar__link {
-    padding: 0.85em 1em;
+    padding: 0.5em 1em;
     border-radius: var(--radius-md);
+    color: var(--on-brand);
     font-family: var(--font-display);
     font-size: var(--step-2);
     font-weight: 600;
+    text-align: center;
+  }
+
+  .navbar__link:hover,
+  .navbar__link[aria-current='true'] {
+    background-color: color-mix(in srgb, var(--on-brand) 16%, transparent);
+    color: var(--on-brand);
   }
 
   .navbar__link::after {
     display: none;
-  }
-
-  .navbar__link[aria-current='true'] {
-    background-color: var(--brand-soft);
   }
 }

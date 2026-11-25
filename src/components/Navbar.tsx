@@ -84,11 +84,7 @@ export function Navbar() {
             aria-label={menuOpen ? dictionary.nav.closeMenu : dictionary.nav.openMenu}
             onClick={() => setMenuOpen((open) => !open)}
           >
-            <Icon
-              name="chevron-down"
-              size={20}
-              style={{ transform: menuOpen ? 'rotate(180deg)' : 'none' }}
-            />
+            <Icon name={menuOpen ? 'close' : 'menu'} size={20} />
           </button>
         </div>
       </div>
