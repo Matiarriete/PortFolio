@@ -142,8 +142,7 @@ check('location is Sevilla', text('.hero__meta').includes('Sevilla'), text('.her
 check('CV link points to Drive', $('a[href*="drive.google.com"]') !== null)
 check('bio has 3 paragraphs', $$('#sobre-mi .about__body > p').length === 3)
 check('profile photo has alt text', ($('.about__photo')?.getAttribute('alt') ?? '').length > 0)
-check('17 skills rendered as tags', $$('.skills__card .tag').length === 17, `got ${$$('.skills__card .tag').length}`)
-check('5 skill groups', $$('.skills__card').length === 5, `got ${$$('.skills__card').length}`)
+check('32 skills rendered as tags', $$('.skills__card .tag').length === 32, `got ${$$('.skills__card .tag').length}`)
 check('languages rendered', $$('.language').length === 2)
 const bands = $$('.language').map((card) => text('.language__band', card)).join('|')
 check('English is listed as B1', bands.includes('B1'), bands)
@@ -179,6 +178,23 @@ for (const a of $$('#cursos a.course-card__link')) {
   const href = a.getAttribute('href') ?? ''
   check(`${href} exists in dist`, existsSync(join(distDir, href.replace('/PortFolio/', ''))))
 }
+
+console.log('\n▸ Skills')
+const skillCards = $$('#habilidades .skills__card')
+check('6 skill groups', skillCards.length === 6, `got ${skillCards.length}`)
+const skillsByGroup = Object.fromEntries(skillCards.map((card) => [
+  text('h3', card),
+  [...card.querySelectorAll('.tag')].map((tag) => tag.textContent.trim()),
+]))
+check('certificate skills are distributed',
+  skillsByGroup['Back-End y datos']?.includes('PostgreSQL') &&
+  ['Gherkin/BDD', 'Karate', 'API testing', 'Selenium WebDriver', 'XPath', 'selectores CSS', 'SDET']
+    .every((s) => skillsByGroup['Testing y QA']?.includes(s)) &&
+  ['SOLID', 'arquitectura y diseño de software'].every((s) => skillsByGroup['Diseño y procesos']?.includes(s)) &&
+  ['Git', 'Bitbucket', 'Sourcetree', 'Jenkins', 'DevOps'].every((s) => skillsByGroup['Herramientas y CI/CD']?.includes(s)),
+  JSON.stringify(skillsByGroup))
+check('no duplicated skill inside a group',
+  Object.values(skillsByGroup).every((skills) => new Set(skills).size === skills.length))
 
 console.log('\n▸ Accessibility')
 check('html lang is es', document.documentElement.getAttribute('lang') === 'es')
@@ -245,6 +261,9 @@ if (englishButton !== undefined) {
   check('courses section is in English', text('#cursos').includes('Courses & certificates'))
   check('courses keep their cards and links in English', $$('#cursos .course-card').length === 15 && $$('#cursos a.course-card__link').length === 10)
   check('certificate label is in English', text('#cursos').includes('View certificate'))
+  check('skill groups keep their labels in English',
+    $$('#habilidades .skills__card h3').length === 6 &&
+    text('#habilidades').includes('Tools & CI/CD'))
   check('og:locale updated to en_US', $('meta[property="og:locale"]')?.content === 'en_US')
   check('canonical updated', ($('link[rel="canonical"]')?.href ?? '').includes('lang=en'))
   check(

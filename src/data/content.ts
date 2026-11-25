@@ -160,7 +160,7 @@ export const socials: readonly SocialLink[] = [
     },
     ]
 
-/** "Áreas de experiencia" exactly as listed on the CV — no invented levels. */
+/** CV areas plus technologies verified by the certificates — no invented levels. */
 export const skillGroups: readonly SkillGroup[] = [
   {
     id: 'languages',
@@ -175,17 +175,34 @@ export const skillGroups: readonly SkillGroup[] = [
   {
     id: 'backend',
     label: { es: 'Back-End y datos', en: 'Back-End & data' },
-    skills: ['MySQL', 'Node.js', 'Google Apps Script'],
+    skills: ['MySQL', 'Node.js', 'Google Apps Script', 'PostgreSQL'],
   },
   {
     id: 'testing',
     label: { es: 'Testing y QA', en: 'Testing & QA' },
-    skills: ['Selenium', 'Playwright', 'TestNG', 'TestRail'],
+    skills: [
+      'Selenium',
+      'Playwright',
+      'TestNG',
+      'TestRail',
+      'Gherkin/BDD',
+      'Karate',
+      'API testing',
+      'Selenium WebDriver',
+      'XPath',
+      'selectores CSS',
+      'SDET',
+    ],
   },
   {
     id: 'design',
     label: { es: 'Diseño y procesos', en: 'Design & process' },
-    skills: ['UX Design', 'Agile'],
+    skills: ['UX Design', 'Agile', 'SOLID', 'arquitectura y diseño de software'],
+  },
+  {
+    id: 'tools',
+    label: { es: 'Herramientas y CI/CD', en: 'Tools & CI/CD' },
+    skills: ['Git', 'Bitbucket', 'Sourcetree', 'Jenkins', 'DevOps'],
   },
 ]
 
