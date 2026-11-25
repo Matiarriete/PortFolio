@@ -36,7 +36,7 @@ export function Courses() {
               {course.certificate !== undefined && (
                 <a
                   className="course-card__link"
-                  href={`${import.meta.env.BASE_URL}${course.certificate}`}
+                  href={course.certificate}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`${copy.viewCertificate}: ${localize(course.title, locale)}`}

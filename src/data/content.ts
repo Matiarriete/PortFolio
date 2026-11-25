@@ -57,7 +57,7 @@ export interface CourseEntry {
   title: LocalizedText
   provider: LocalizedText
   period?: LocalizedText
-  /** Relative to public/, e.g. "certificados/x.pdf". Absent for CV courses. */
+  /** Absolute Google Drive file URL. Absent for CV courses. */
   certificate?: string
 }
 
@@ -277,25 +277,25 @@ export const education: readonly TimelineEntry[] = [
   },
 ]
 
-/** Udemy certificates first (with PDF), then the short courses from the CV. */
+/** Udemy certificates first (hosted on Drive), then the short courses from the CV. */
 export const courses: readonly CourseEntry[] = [
   {
     id: 'gherkin-language-the-master-guide',
     title: { es: 'Gherkin Language — The Master Guide', en: 'Gherkin Language — The Master Guide' },
     provider: { es: 'Udemy', en: 'Udemy' },
-    certificate: 'certificados/gherkin-language-the-master-guide.pdf',
+    certificate: 'https://drive.google.com/file/d/1J-HJAyfEvjJRS0e2IsyZ9_SKWrlb1Vzy/view?usp=sharing',
   },
   {
     id: 'rest-api-testing-with-karate-framework',
     title: { es: 'REST API Testing with Karate Framework', en: 'REST API Testing with Karate Framework' },
     provider: { es: 'Udemy', en: 'Udemy' },
-    certificate: 'certificados/rest-api-testing-with-karate-framework.pdf',
+    certificate: 'https://drive.google.com/file/d/1lbKvYObBOp2Uko9OliYhtwRiqbmpyob1/view?usp=sharing',
   },
   {
     id: 'advanced-selenium-testing-framework-with-java',
     title: { es: 'Advanced Selenium Testing Framework with Java', en: 'Advanced Selenium Testing Framework with Java' },
     provider: { es: 'Udemy', en: 'Udemy' },
-    certificate: 'certificados/advanced-selenium-testing-framework-with-java.pdf',
+    certificate: 'https://drive.google.com/file/d/1r5JaX1ntTeGR2Y6xeYARDZS3RPbEEgvN/view?usp=sharing',
   },
   {
     id: 'git-essentials-learn-git-with-bitbucket-and-sourcetree',
@@ -304,7 +304,7 @@ export const courses: readonly CourseEntry[] = [
       en: 'Git Essentials: Learn Git with Bitbucket and Sourcetree',
     },
     provider: { es: 'Udemy', en: 'Udemy' },
-    certificate: 'certificados/git-essentials-learn-git-with-bitbucket-and-sourcetree.pdf',
+    certificate: 'https://drive.google.com/file/d/1xuINVn2fZ3meEtvNzFtzjHJ_ex6Qigq1/view?usp=sharing',
   },
   {
     id: 'master-xpath-and-css-selectors-for-selenium-webdriver',
@@ -313,7 +313,7 @@ export const courses: readonly CourseEntry[] = [
       en: 'Master XPath and CSS Selectors for Selenium WebDriver',
     },
     provider: { es: 'Udemy', en: 'Udemy' },
-    certificate: 'certificados/master-xpath-and-css-selectors-for-selenium-webdriver.pdf',
+    certificate: 'https://drive.google.com/file/d/1dBqjjWuxD_eSvPINNPxD7Khf7jqXSgbf/view?usp=sharing',
   },
   {
     id: 'postgresql-bootcamp-go-from-beginner-to-advanced',
@@ -322,7 +322,7 @@ export const courses: readonly CourseEntry[] = [
       en: 'PostgreSQL Bootcamp: Go From Beginner to Advanced',
     },
     provider: { es: 'Udemy', en: 'Udemy' },
-    certificate: 'certificados/postgresql-bootcamp-go-from-beginner-to-advanced.pdf',
+    certificate: 'https://drive.google.com/file/d/1tAUJnr00183gkZXHfGVqEjdyH_SM_R2D/view?usp=sharing',
   },
   {
     id: 'sdet-training-selenium-webdriver-java-project-and-code-tests',
@@ -331,7 +331,7 @@ export const courses: readonly CourseEntry[] = [
       en: 'SDET Training: Selenium WebDriver, Java Project & Code Tests',
     },
     provider: { es: 'Udemy', en: 'Udemy' },
-    certificate: 'certificados/sdet-training-selenium-webdriver-java-project-and-code-tests.pdf',
+    certificate: 'https://drive.google.com/file/d/1bvPz6GhSn2IgXPqRCxQVg3FBEvdAq47Q/view?usp=sharing',
   },
   {
     id: 'jenkins-from-zero-to-hero-become-a-devops-jenkins-master',
@@ -340,7 +340,7 @@ export const courses: readonly CourseEntry[] = [
       en: 'Jenkins, From Zero To Hero: Become a DevOps Jenkins Master',
     },
     provider: { es: 'Udemy', en: 'Udemy' },
-    certificate: 'certificados/jenkins-from-zero-to-hero-become-a-devops-jenkins-master.pdf',
+    certificate: 'https://drive.google.com/file/d/15p3R4DWYGXgAVE1y9t1WCWP7ZJc1f8jm/view?usp=sharing',
   },
   {
     id: 'solid-principles-introducing-software-architecture-and-design',
@@ -349,7 +349,7 @@ export const courses: readonly CourseEntry[] = [
       en: 'SOLID Principles — Introducing Software Architecture & Design',
     },
     provider: { es: 'Udemy', en: 'Udemy' },
-    certificate: 'certificados/solid-principles-introducing-software-architecture-and-design.pdf',
+    certificate: 'https://drive.google.com/file/d/1vYHCU2SRSZ3Aa9ZEEmM6YnTUiDfiSxnt/view?usp=sharing',
   },
   {
     id: 'selenium-webdriver-and-java-using-real-examples-2023',
@@ -358,7 +358,7 @@ export const courses: readonly CourseEntry[] = [
       en: 'Selenium WebDriver & Java — Using Real Examples (2023)',
     },
     provider: { es: 'Udemy', en: 'Udemy' },
-    certificate: 'certificados/selenium-webdriver-and-java-using-real-examples-2023.pdf',
+    certificate: 'https://drive.google.com/file/d/1s58T6Xdy2eltTdDQoaiG1FHKMwFDLr47/view?usp=sharing',
   },
   {
     id: 'solera-bootcamp',

@@ -88,22 +88,22 @@ contradict it. Spoken languages keep a CEFR band because that one is stated.
 ## Cursos y certificados
 
 The `#cursos` section keeps short courses and certifications out of the longer
-`education` timeline. The original Udemy PDFs live in `public/certificados/`;
-they are served as static files, never imported into the JS bundle.
+`education` timeline. The Udemy PDFs are shared from Google Drive; they are not
+bundled into the site.
 
 To add a certificate:
 
-1. Drop the PDF into `public/certificados/` using a kebab-case filename.
+1. Share the PDF in the Drive folder and copy its `file/d/<ID>/view?usp=sharing`
+   URL from the browser address bar.
 2. Add an entry to `courses` in `src/data/content.ts` with `id`, `title`,
-   `provider` and `certificate` set to the path relative to `public/`, e.g.
-   `certificados/mi-certificado.pdf`.
+   `provider` and `certificate` set to that absolute URL.
 3. Add its ES/EN strings if the copy is new; the view-certificate labels already
    exist in both dictionaries in `src/i18n/dictionaries.ts`.
 
-CV courses without a PDF omit `certificate` and render no link. The component
-prefixes every href with `import.meta.env.BASE_URL`, so the links keep working
-under the `/PortFolio/` GitHub Pages subpath. The smoke test checks that all
-referenced PDFs exist in `dist/`.
+CV courses without a certificate omit `certificate` and render no link. Links
+are used as-is, so absolute Drive URLs work under the `/PortFolio/` GitHub Pages
+subpath. If sharing is revoked the link stops working. The smoke test checks
+that every URL points to the Drive file for its course, not the PDF contents.
 
 Animations are opt-out: `prefers-reduced-motion: reduce` disables the scroll
 reveals and transitions.

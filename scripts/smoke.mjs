@@ -162,7 +162,24 @@ check('10 certificate links', $$('#cursos a.course-card__link').length === 10, `
 check('5 CV courses are no longer in Formación', ['Nextu', 'Cisco Virtual Academy', 'WhiteSuit', 'CoderHouse', 'Bootcamp'].every((s) => !text('#formacion').includes(s)))
 check('5 CV courses are in Courses', ['Soporte y Mantenimiento Técnico', 'Ciberseguridad', 'Ghost', 'Desarrollo Web', 'Bootcamp'].every((s) => text('#cursos').includes(s)))
 check('every course card has a heading', $$('#cursos .course-card').every((c) => c.querySelector('h3') !== null))
-check('every certificate link uses the /PortFolio/ base', $$('#cursos a.course-card__link').every((a) => (a.getAttribute('href') ?? '').startsWith('/PortFolio/certificados/')))
+const expectedCertificates = {
+  'Advanced Selenium Testing Framework with Java': '1r5JaX1ntTeGR2Y6xeYARDZS3RPbEEgvN',
+  'Gherkin Language — The Master Guide': '1J-HJAyfEvjJRS0e2IsyZ9_SKWrlb1Vzy',
+  'Git Essentials: Learn Git with Bitbucket and Sourcetree': '1xuINVn2fZ3meEtvNzFtzjHJ_ex6Qigq1',
+  'Jenkins, From Zero To Hero: Become a DevOps Jenkins Master': '15p3R4DWYGXgAVE1y9t1WCWP7ZJc1f8jm',
+  'Master XPath and CSS Selectors for Selenium WebDriver': '1dBqjjWuxD_eSvPINNPxD7Khf7jqXSgbf',
+  'PostgreSQL Bootcamp': '1tAUJnr00183gkZXHfGVqEjdyH_SM_R2D',
+  'REST API Testing with Karate Framework': '1lbKvYObBOp2Uko9OliYhtwRiqbmpyob1',
+  'SDET Training': '1bvPz6GhSn2IgXPqRCxQVg3FBEvdAq47Q',
+  'Selenium WebDriver & Java — Using Real Examples (2023)': '1s58T6Xdy2eltTdDQoaiG1FHKMwFDLr47',
+  'SOLID Principles — Introducing Software Architecture & Design': '1vYHCU2SRSZ3Aa9ZEEmM6YnTUiDfiSxnt',
+}
+check('every certificate link points to its Drive file', $$('#cursos a.course-card__link').every((a) => {
+  const title = a.closest('.course-card')?.querySelector('h3')?.textContent ?? ''
+  const id = Object.entries(expectedCertificates).find(([prefix]) => title.startsWith(prefix))?.[1]
+  return id !== undefined && a.getAttribute('href') === `https://drive.google.com/file/d/${id}/view?usp=sharing`
+}), $$('#cursos a.course-card__link').map((a) => a.getAttribute('href')).join(' | '))
+check('no local certificate PDFs', $$('#cursos a.course-card__link').every((a) => !a.getAttribute('href')?.includes('/certificados/')))
 check('certificate links open safely', $$('#cursos a.course-card__link').every((a) =>
   a.getAttribute('target') === '_blank' &&
   ['noopener', 'noreferrer'].every((token) => (a.getAttribute('rel') ?? '').split(/\s+/).includes(token))
@@ -174,10 +191,6 @@ check('every certificate link is labelled with its course', $$('#cursos a.course
 const cvCards = $$('#cursos .course-card').filter((c) => !/Udemy/.test(c.textContent ?? ''))
 check('5 CV course cards found', cvCards.length === 5, `got ${cvCards.length}`)
 check('CV courses have no PDF link', cvCards.every((c) => c.querySelector('a.course-card__link') === null))
-for (const a of $$('#cursos a.course-card__link')) {
-  const href = a.getAttribute('href') ?? ''
-  check(`${href} exists in dist`, existsSync(join(distDir, href.replace('/PortFolio/', ''))))
-}
 
 console.log('\n▸ Skills')
 const skillCards = $$('#habilidades .skills__card')
