@@ -13,6 +13,9 @@ dist-ssr/
 node_modules/.tmp/
 *.tsbuildinfo
 
+# Agent workflow scratch state
+.superpowers/
+
 # Logs
 logs
 *.log
