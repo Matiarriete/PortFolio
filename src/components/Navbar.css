@@ -23,6 +23,18 @@
   -webkit-backdrop-filter: blur(14px) saturate(150%);
 }
 
+/* A computed backdrop-filter makes the header a containing block for fixed
+   descendants, which would shrink the drawer to the header's height. */
+.navbar[data-open='true'] {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* The default brand outline would be invisible on the brand-coloured panel. */
+.navbar[data-open='true'] :focus-visible {
+  outline-color: var(--on-brand);
+}
+
 /* Three tracks, so the nav sits on the true centre of the bar regardless of how
    wide the actions cluster gets. `space-between` would drift it left. */
 .navbar__inner {
@@ -240,15 +252,16 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    justify-content: safe center;
     gap: var(--space-md);
     padding: var(--space-xl) clamp(1.25rem, 5vw, 3rem);
     background-color: var(--brand);
     overflow-y: auto;
     visibility: hidden;
     transform: translateX(100%);
-    transition:
-      transform var(--dur-base) var(--ease-out),
-      visibility var(--dur-base);
+    /* Hiding on close is immediate: the header regains its blur at once, so
+       animating a viewport-fixed panel would make it jump mid-transition. */
+    transition: transform var(--dur-base) var(--ease-out);
   }
 
   .navbar[data-open='true'] .navbar__nav {
@@ -280,5 +293,16 @@
 
   .navbar__link::after {
     display: none;
+  }
+}
+
+/* Short viewports: keep all eight links reachable by scrolling. */
+@media (max-height: 40rem) {
+  .navbar__nav {
+    padding-block: var(--space-md);
+  }
+
+  .navbar__link {
+    font-size: var(--step-1);
   }
 }

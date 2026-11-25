@@ -14,6 +14,8 @@ export function Navbar() {
 
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const navRef = useRef<HTMLElement>(null)
+  const toggleRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     let frame = 0
@@ -33,12 +35,19 @@ export function Navbar() {
     }
   }, [])
 
-  // Lock the page behind the mobile menu and close it on Escape.
+  // Lock the page behind the mobile menu, keep the keyboard inside it and
+  // restore focus to the toggle when it closes.
   useEffect(() => {
     if (!menuOpen) return
 
     const previousOverflow = document.body.style.overflow
     document.body.style.overflow = 'hidden'
+
+    const background = [document.getElementById('main'), document.querySelector('footer')].filter(
+      (element): element is HTMLElement => element !== null,
+    )
+    background.forEach((element) => element.setAttribute('inert', ''))
+    navRef.current?.querySelector<HTMLAnchorElement>('a')?.focus()
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') setMenuOpen(false)
@@ -47,15 +56,27 @@ export function Navbar() {
     document.addEventListener('keydown', onKeyDown)
     return () => {
       document.body.style.overflow = previousOverflow
+      background.forEach((element) => element.removeAttribute('inert'))
       document.removeEventListener('keydown', onKeyDown)
+      toggleRef.current?.focus()
     }
   }, [menuOpen])
+
+  // Past the mobile breakpoint the toggle disappears, so an open drawer would
+  // leave the page locked with no visible way to close it.
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 68 * 16) setMenuOpen(false)
+    }
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
 
   return (
     <header className="navbar" data-scrolled={scrolled} data-open={menuOpen}>
       <div className="navbar__inner">
 
-        <nav id="navbar-menu" className="navbar__nav" aria-label={dictionary.nav.mainNavigation}>
+        <nav id="navbar-menu" ref={navRef} className="navbar__nav" aria-label={dictionary.nav.mainNavigation}>
           <ul className="navbar__list">
             {navSections.map((section) => (
               <li key={section.id}>
@@ -78,6 +99,7 @@ export function Navbar() {
           <LanguageSwitcher />
           <button
             type="button"
+            ref={toggleRef}
             className="icon-button navbar__toggle"
             aria-expanded={menuOpen}
             aria-controls="navbar-menu"

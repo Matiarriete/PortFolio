@@ -229,6 +229,14 @@ const navbarCss = readFileSync(join(root, 'src/components/Navbar.css'), 'utf8')
 const mobileBlock = navbarCss.split('@media (max-width: ').slice(1).find((part) => part.includes('.navbar__toggle'))
 const mobileBreakpointEm = Number(mobileBlock?.match(/^([\d.]+)em\)/)?.[1] ?? 0)
 check('mobile nav starts wide enough for 8 links', mobileBreakpointEm >= 64, `${mobileBreakpointEm}em`)
+check('open header drops backdrop-filter so the drawer fills the viewport',
+  /\.navbar\[data-open='true'\][\s\S]{0,160}backdrop-filter:\s*none/.test(navbarCss))
+const drawerTransition = mobileBlock.match(/\.navbar__nav\s*\{([\s\S]*?)\}/)?.[1]?.match(/transition:\s*([^;]+);/)?.[1] ?? ''
+check('drawer close does not animate visibility', !/visibility/.test(drawerTransition), drawerTransition)
+check('drawer focus rings use the on-brand colour',
+  /\.navbar\[data-open='true'\]\s+:focus-visible\s*\{[^}]*outline-color:\s*var\(--on-brand\)/.test(navbarCss))
+check('drawer stays scrollable on short screens',
+  /justify-content:\s*safe center/.test(mobileBlock) && /@media\s*\(max-height:\s*40rem\)/.test(mobileBlock))
 
 console.log('\n▸ Mobile menu toggle')
 const toggle = $('.navbar__toggle')
@@ -243,10 +251,16 @@ check('clicking opens the menu', toggle?.getAttribute('aria-expanded') === 'true
 check('open toggle shows the close icon', [...$$('.navbar__toggle svg path')].some((p) => p.getAttribute('d') === 'M6 6l12 12'))
 check('header reflects open state', $('.navbar')?.getAttribute('data-open') === 'true')
 check('page scroll is locked', document.body.style.overflow === 'hidden')
+check('opening the drawer focuses its first link', document.activeElement === $('#navbar-menu')?.querySelector('a'))
+check('background content is inert while the drawer is open',
+  $('#main')?.hasAttribute('inert') === true && $('footer')?.hasAttribute('inert') === true)
 toggle?.click()
 await new Promise((r) => setTimeout(r, 10))
 check('clicking again closes it', toggle?.getAttribute('aria-expanded') === 'false')
 check('scroll lock released', document.body.style.overflow !== 'hidden')
+check('closing the drawer restores focus to the toggle', document.activeElement === toggle)
+check('background inert is removed on close',
+  $('#main')?.hasAttribute('inert') === false && $('footer')?.hasAttribute('inert') === false)
 
 const navbarMenu = $('#navbar-menu')
 check('panel is full screen', /inset:\s*0/.test(mobileBlock))
@@ -262,6 +276,16 @@ await new Promise((r) => setTimeout(r, 10))
 document.dispatchEvent(new window.KeyboardEvent('keydown', { key: 'Escape' }))
 await new Promise((r) => setTimeout(r, 10))
 check('Escape closes the menu', toggle?.getAttribute('aria-expanded') === 'false')
+toggle?.click()
+await new Promise((r) => setTimeout(r, 10))
+const originalWidth = window.innerWidth
+Object.defineProperty(window, 'innerWidth', { value: 1200, configurable: true })
+window.dispatchEvent(new window.Event('resize'))
+await new Promise((r) => setTimeout(r, 10))
+check('resizing to desktop closes the menu', toggle?.getAttribute('aria-expanded') === 'false')
+check('resize releases the scroll lock', document.body.style.overflow !== 'hidden')
+Object.defineProperty(window, 'innerWidth', { value: originalWidth, configurable: true })
+window.dispatchEvent(new window.Event('resize'))
 
 console.log('\n▸ Language switch')
 // The switcher is a disclosure: open it before its options exist in the DOM.
