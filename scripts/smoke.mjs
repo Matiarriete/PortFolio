@@ -131,7 +131,7 @@ check('header/nav exists', $('header.navbar nav') !== null)
 check('footer exists', $('footer') !== null)
 
 console.log('\n▸ Sections')
-for (const id of ['inicio', 'sobre-mi', 'experiencia', 'formacion', 'habilidades', 'proyectos', 'contacto']) {
+for (const id of ['inicio', 'sobre-mi', 'experiencia', 'formacion', 'cursos', 'habilidades', 'proyectos', 'contacto']) {
   check(`section #${id}`, $(`#${id}`) !== null)
 }
 
@@ -150,12 +150,26 @@ check('English is listed as B1', bands.includes('B1'), bands)
 
 console.log('\n▸ Timeline (from the CV)')
 check('2 work entries', $$('#experiencia .timeline__item').length === 2, `got ${$$('#experiencia .timeline__item').length}`)
-check('9 education entries', $$('#formacion .timeline__item').length === 9, `got ${$$('#formacion .timeline__item').length}`)
+check('4 education entries', $$('#formacion .timeline__item').length === 4, `got ${$$('#formacion .timeline__item').length}`)
 check('Solera listed', text('#experiencia').includes('Solera'))
 check('Stellantis listed', text('#experiencia').includes('Stellantis'))
 check('UOC listed', text('#formacion').includes('Universitat Oberta'))
 check('ongoing roles are badged', $$('.timeline__badge').length === 2, `got ${$$('.timeline__badge').length}`)
 check('stacks rendered as tags', $$('#experiencia .timeline__tags .tag').length === 8, `got ${$$('#experiencia .timeline__tags .tag').length}`)
+
+console.log('\n▸ Courses')
+check('15 course cards', $$('#cursos .course-card').length === 15, `got ${$$('#cursos .course-card').length}`)
+check('10 certificate links', $$('#cursos a.course-card__link').length === 10, `got ${$$('#cursos a.course-card__link').length}`)
+check('4 education entries after the move', $$('#formacion .timeline__item').length === 4)
+check('5 CV courses are no longer in Formación', ['Nextu', 'Cisco Virtual Academy', 'WhiteSuit', 'CoderHouse', 'Bootcamp'].every((s) => !text('#formacion').includes(s)))
+check('5 CV courses are in Courses', ['Soporte y Mantenimiento Técnico', 'Ciberseguridad', 'Ghost', 'Desarrollo Web', 'Bootcamp'].every((s) => text('#cursos').includes(s)))
+check('every course card has a heading', $$('#cursos .course-card').every((c) => c.querySelector('h3') !== null))
+check('every certificate link uses the /PortFolio/ base', $$('#cursos a.course-card__link').every((a) => (a.getAttribute('href') ?? '').startsWith('/PortFolio/certificados/')))
+check('every certificate link is labelled with its course', $$('#cursos a.course-card__link').every((a) => (a.getAttribute('aria-label') ?? '').length > 'Ver certificado'.length))
+for (const a of $$('#cursos a.course-card__link')) {
+  const href = a.getAttribute('href') ?? ''
+  check(`${href} exists in dist`, existsSync(join(distDir, href.replace('/PortFolio/', ''))))
+}
 
 console.log('\n▸ Accessibility')
 check('html lang is es', document.documentElement.getAttribute('lang') === 'es')
@@ -210,9 +224,10 @@ if (englishButton !== undefined) {
   check(
     'nav is in English',
     $$('.navbar__link').map((a) => a.textContent).join('|') ===
-      'Home|About|Experience|Education|Skills|Projects|Contact',
+      'Home|About|Experience|Education|Courses|Skills|Projects|Contact',
     $$('.navbar__link').map((a) => a.textContent).join('|'),
   )
+  check('courses section is in English', text('#cursos').includes('Courses & certificates'))
   check('og:locale updated to en_US', $('meta[property="og:locale"]')?.content === 'en_US')
   check('canonical updated', ($('link[rel="canonical"]')?.href ?? '').includes('lang=en'))
   check(

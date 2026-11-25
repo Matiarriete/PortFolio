@@ -19,6 +19,7 @@ const es = {
     about: 'Sobre mí',
     experience: 'Experiencia',
     education: 'Formación',
+    courses: 'Cursos',
     skills: 'Habilidades',
     projects: 'Proyectos',
     contact: 'Contacto',
@@ -66,7 +67,15 @@ const es = {
     eyebrow: 'Formación',
     title: 'Qué he estudiado',
     description:
-      'Ingeniería, ciclos formativos, bootcamps y certificaciones. La mayoría siguen siendo esto: aprender de forma continua.',
+      'Ingeniería y formación académica larga. Los cursos cortos y las certificaciones están en la sección siguiente.',
+  },
+
+  courses: {
+    eyebrow: 'Cursos y certificados',
+    title: 'Sigo aprendiendo',
+    description:
+      'Cursos cortos, bootcamps y certificaciones. Aquí puedes abrir el certificado original de cada uno.',
+    viewCertificate: 'Ver certificado',
   },
 
   skills: {
@@ -144,6 +153,7 @@ const en: Dictionary = {
     about: 'About',
     experience: 'Experience',
     education: 'Education',
+    courses: 'Courses',
     skills: 'Skills',
     projects: 'Projects',
     contact: 'Contact',
@@ -191,7 +201,15 @@ timeline: {
     eyebrow: 'Education',
     title: 'What I have studied',
     description:
-      'Engineering degrees, vocational courses, bootcamps and certifications. Most of it still ongoing: I learn continuously.',
+      'Engineering degrees and long-form academic training. Short courses and certifications are in the next section.',
+  },
+
+  courses: {
+    eyebrow: 'Courses & certificates',
+    title: 'Still learning',
+    description:
+      'Short courses, bootcamps and certifications. Open the original certificate for each one.',
+    viewCertificate: 'View certificate',
   },
 
   skills: {

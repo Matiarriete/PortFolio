@@ -51,6 +51,16 @@ export interface TimelineEntry {
   isOngoing?: boolean
 }
 
+/** A short course or certificate. Only Udemy entries have a downloadable PDF. */
+export interface CourseEntry {
+  id: string
+  title: LocalizedText
+  provider: LocalizedText
+  period?: LocalizedText
+  /** Relative to public/, e.g. "certificados/x.pdf". Absent for CV courses. */
+  certificate?: string
+}
+
 export interface SpokenLanguage {
   id: string
   label: LocalizedText
@@ -113,6 +123,7 @@ export const navSections = [
   { id: 'sobre-mi', labelKey: 'about' },
   { id: 'experiencia', labelKey: 'experience' },
   { id: 'formacion', labelKey: 'education' },
+  { id: 'cursos', labelKey: 'courses' },
   { id: 'habilidades', labelKey: 'skills' },
   { id: 'proyectos', labelKey: 'projects' },
   { id: 'contacto', labelKey: 'contact' },
@@ -211,6 +222,7 @@ export const experience: readonly TimelineEntry[] = [
   },
 ]
 
+/** Long-form academic education. Short courses live in `courses`. */
 export const education: readonly TimelineEntry[] = [
   {
     id: 'uoc-ingenieria',
@@ -234,26 +246,6 @@ export const education: readonly TimelineEntry[] = [
     },
   },
   {
-    id: 'solera-bootcamp',
-    period: { es: '2022', en: '2022' },
-    title: { es: 'Bootcamp Front-End, Back-End y Testing', en: 'Front-End, Back-End & Testing Bootcamp' },
-    organisation: { es: 'Solera', en: 'Solera' },
-    summary: {
-      es: 'Bootcamp de desarrollo y testing.',
-      en: 'Development and testing bootcamp.',
-    },
-  },
-  {
-    id: 'coderhouse-web',
-    period: { es: '2022', en: '2022' },
-    title: { es: 'Desarrollo Web', en: 'Web Development' },
-    organisation: { es: 'CoderHouse', en: 'CoderHouse' },
-    summary: {
-      es: 'Curso de desarrollo web.',
-      en: 'Web development course.',
-    },
-  },
-  {
     id: 'iua-ingenieria-parcial',
     period: { es: '2017 — 2021', en: '2017 — 2021' },
     title: { es: 'Ingeniería Informática (parcial)', en: 'Computer Science (partial)' },
@@ -261,45 +253,6 @@ export const education: readonly TimelineEntry[] = [
     summary: {
       es: 'Primeros cursos de la ingeniería, no completada.',
       en: 'First years of the degree, not completed.',
-    },
-  },
-  {
-    id: 'whitesuit-ghost',
-    period: { es: '2020', en: '2020' },
-    title: {
-      es: 'Curso Ghost — Grey Hat Offensive Security Technician',
-      en: 'Ghost Course — Grey Hat Offensive Security Technician',
-    },
-    organisation: { es: 'WhiteSuit Hacking', en: 'WhiteSuit Hacking' },
-    summary: {
-      es: 'Formación en seguridad ofensiva.',
-      en: 'Offensive security training.',
-    },
-  },
-  {
-    id: 'cisco-cybersec',
-    period: { es: '2020', en: '2020' },
-    title: {
-      es: 'Introducción a la Ciberseguridad',
-      en: 'Introduction to Cybersecurity',
-    },
-    organisation: { es: 'Cisco Virtual Academy', en: 'Cisco Virtual Academy' },
-    summary: {
-      es: 'Curso introductorio de ciberseguridad.',
-      en: 'Introductory cybersecurity course.',
-    },
-  },
-  {
-    id: 'nextu-soporte',
-    period: { es: '2018', en: '2018' },
-    title: {
-      es: 'Soporte y Mantenimiento Técnico',
-      en: 'Technical Support and Maintenance',
-    },
-    organisation: { es: 'Nextu', en: 'Nextu' },
-    summary: {
-      es: 'Certificación en soporte y mantenimiento técnico.',
-      en: 'Certification in technical support and maintenance.',
     },
   },
   {
@@ -311,6 +264,127 @@ export const education: readonly TimelineEntry[] = [
       es: 'Bachillerato en Humanidades.',
       en: 'High school diploma in Humanities.',
     },
+  },
+]
+
+/** Udemy certificates first (with PDF), then the short courses from the CV. */
+export const courses: readonly CourseEntry[] = [
+  {
+    id: 'gherkin-language-the-master-guide',
+    title: { es: 'Gherkin Language — The Master Guide', en: 'Gherkin Language — The Master Guide' },
+    provider: { es: 'Udemy', en: 'Udemy' },
+    certificate: 'certificados/gherkin-language-the-master-guide.pdf',
+  },
+  {
+    id: 'rest-api-testing-with-karate-framework',
+    title: { es: 'REST API Testing with Karate Framework', en: 'REST API Testing with Karate Framework' },
+    provider: { es: 'Udemy', en: 'Udemy' },
+    certificate: 'certificados/rest-api-testing-with-karate-framework.pdf',
+  },
+  {
+    id: 'advanced-selenium-testing-framework-with-java',
+    title: { es: 'Advanced Selenium Testing Framework with Java', en: 'Advanced Selenium Testing Framework with Java' },
+    provider: { es: 'Udemy', en: 'Udemy' },
+    certificate: 'certificados/advanced-selenium-testing-framework-with-java.pdf',
+  },
+  {
+    id: 'git-essentials-learn-git-with-bitbucket-and-sourcetree',
+    title: {
+      es: 'Git Essentials: Learn Git with Bitbucket and Sourcetree',
+      en: 'Git Essentials: Learn Git with Bitbucket and Sourcetree',
+    },
+    provider: { es: 'Udemy', en: 'Udemy' },
+    certificate: 'certificados/git-essentials-learn-git-with-bitbucket-and-sourcetree.pdf',
+  },
+  {
+    id: 'master-xpath-and-css-selectors-for-selenium-webdriver',
+    title: {
+      es: 'Master XPath and CSS Selectors for Selenium WebDriver',
+      en: 'Master XPath and CSS Selectors for Selenium WebDriver',
+    },
+    provider: { es: 'Udemy', en: 'Udemy' },
+    certificate: 'certificados/master-xpath-and-css-selectors-for-selenium-webdriver.pdf',
+  },
+  {
+    id: 'postgresql-bootcamp-go-from-beginner-to-advanced',
+    title: {
+      es: 'PostgreSQL Bootcamp: Go From Beginner to Advanced',
+      en: 'PostgreSQL Bootcamp: Go From Beginner to Advanced',
+    },
+    provider: { es: 'Udemy', en: 'Udemy' },
+    certificate: 'certificados/postgresql-bootcamp-go-from-beginner-to-advanced.pdf',
+  },
+  {
+    id: 'sdet-training-selenium-webdriver-java-project-and-code-tests',
+    title: {
+      es: 'SDET Training: Selenium WebDriver, Java Project & Code Tests',
+      en: 'SDET Training: Selenium WebDriver, Java Project & Code Tests',
+    },
+    provider: { es: 'Udemy', en: 'Udemy' },
+    certificate: 'certificados/sdet-training-selenium-webdriver-java-project-and-code-tests.pdf',
+  },
+  {
+    id: 'jenkins-from-zero-to-hero-become-a-devops-jenkins-master',
+    title: {
+      es: 'Jenkins, From Zero To Hero: Become a DevOps Jenkins Master',
+      en: 'Jenkins, From Zero To Hero: Become a DevOps Jenkins Master',
+    },
+    provider: { es: 'Udemy', en: 'Udemy' },
+    certificate: 'certificados/jenkins-from-zero-to-hero-become-a-devops-jenkins-master.pdf',
+  },
+  {
+    id: 'solid-principles-introducing-software-architecture-and-design',
+    title: {
+      es: 'SOLID Principles — Introducing Software Architecture & Design',
+      en: 'SOLID Principles — Introducing Software Architecture & Design',
+    },
+    provider: { es: 'Udemy', en: 'Udemy' },
+    certificate: 'certificados/solid-principles-introducing-software-architecture-and-design.pdf',
+  },
+  {
+    id: 'selenium-webdriver-and-java-using-real-examples-2023',
+    title: {
+      es: 'Selenium WebDriver & Java — Using Real Examples (2023)',
+      en: 'Selenium WebDriver & Java — Using Real Examples (2023)',
+    },
+    provider: { es: 'Udemy', en: 'Udemy' },
+    certificate: 'certificados/selenium-webdriver-and-java-using-real-examples-2023.pdf',
+  },
+  {
+    id: 'solera-bootcamp',
+    title: { es: 'Bootcamp Front-End, Back-End y Testing', en: 'Front-End, Back-End & Testing Bootcamp' },
+    provider: { es: 'Solera', en: 'Solera' },
+    period: { es: '2022', en: '2022' },
+  },
+  {
+    id: 'coderhouse-web',
+    title: { es: 'Desarrollo Web', en: 'Web Development' },
+    provider: { es: 'CoderHouse', en: 'CoderHouse' },
+    period: { es: '2022', en: '2022' },
+  },
+  {
+    id: 'whitesuit-ghost',
+    title: {
+      es: 'Curso Ghost — Grey Hat Offensive Security Technician',
+      en: 'Ghost Course — Grey Hat Offensive Security Technician',
+    },
+    provider: { es: 'WhiteSuit Hacking', en: 'WhiteSuit Hacking' },
+    period: { es: '2020', en: '2020' },
+  },
+  {
+    id: 'cisco-cybersec',
+    title: { es: 'Introducción a la Ciberseguridad', en: 'Introduction to Cybersecurity' },
+    provider: { es: 'Cisco Virtual Academy', en: 'Cisco Virtual Academy' },
+    period: { es: '2020', en: '2020' },
+  },
+  {
+    id: 'nextu-soporte',
+    title: {
+      es: 'Soporte y Mantenimiento Técnico',
+      en: 'Technical Support and Maintenance',
+    },
+    provider: { es: 'Nextu', en: 'Nextu' },
+    period: { es: '2018', en: '2018' },
   },
 ]
 
