@@ -358,6 +358,22 @@ check(
 )
 check('reveals became visible once observed', $$('.reveal[data-visible="true"]').length > 0)
 
+console.log('\n▸ Project card buttons')
+const projectsCss = readFileSync(join(root, 'src/components/Projects.css'), 'utf8')
+const linkBlock = projectsCss.match(/\.project__link\s*\{([^}]*)\}/)?.[1] ?? ''
+check('project buttons keep their natural width', /flex:\s*0\s+0\s+auto/.test(linkBlock), linkBlock.trim())
+// The global `ul[class] { padding: 0 }` reset can silently cancel the spacing,
+// so check the computed cascade instead of reading the declaration alone.
+const cssProbe = new JSDOM(
+  `<style>${readFileSync(join(root, 'src/styles/tokens.css'), 'utf8')}</style>` +
+    `<style>${readFileSync(join(root, 'src/styles/global.css'), 'utf8')}</style>` +
+    `<style>${projectsCss}</style>` +
+    '<div class="project"><ul class="project__links"></ul></div>',
+)
+const probeLinks = cssProbe.window.document.querySelector('.project__links')
+const dividerSpacing = cssProbe.window.getComputedStyle(probeLinks).paddingTop
+check('project buttons sit clear of the divider', dividerSpacing !== '0px' && dividerSpacing !== '', dividerSpacing)
+
 console.log('\n▸ Media')
 const video = $('.project__video')
 check('demo video mounted lazily', video !== null)
