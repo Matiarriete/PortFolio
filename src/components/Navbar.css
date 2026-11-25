@@ -6,11 +6,12 @@
   padding: 1%;
   padding-inline: clamp(1.25rem, 5vw, 3rem);
   border-bottom: 1px solid transparent;
+  /* backdrop-filter is deliberately not transitioned: any non-null value
+     makes this header the containing block for the viewport-fixed drawer. */
   transition:
     background-color var(--dur-base) var(--ease-out),
     border-color var(--dur-base) var(--ease-out),
-    box-shadow var(--dur-base) var(--ease-out),
-    backdrop-filter var(--dur-base) var(--ease-out);
+    box-shadow var(--dur-base) var(--ease-out);
 }
 
 /* Transparent over the hero, frosted once the page scrolls. */
@@ -30,9 +31,15 @@
   -webkit-backdrop-filter: none;
 }
 
-/* The default brand outline would be invisible on the brand-coloured panel. */
+/* The default brand outline would be invisible on the brand-coloured panel.
+   The language dropdown keeps its own surface background, so it needs the
+   normal brand outline instead. */
 .navbar[data-open='true'] :focus-visible {
   outline-color: var(--on-brand);
+}
+
+.navbar[data-open='true'] .lang__menu :focus-visible {
+  outline-color: var(--brand);
 }
 
 /* Three tracks, so the nav sits on the true centre of the bar regardless of how
@@ -296,8 +303,9 @@
   }
 }
 
-/* Short viewports: keep all eight links reachable by scrolling. */
-@media (max-height: 40rem) {
+/* Short viewports: keep all eight links reachable by scrolling. Scoped to mobile
+   so the desktop links do not outgrow --header-height and hide anchor targets. */
+@media (max-width: 67.99em) and (max-height: 40rem) {
   .navbar__nav {
     padding-block: var(--space-md);
   }

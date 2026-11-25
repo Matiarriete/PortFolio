@@ -231,12 +231,18 @@ const mobileBreakpointEm = Number(mobileBlock?.match(/^([\d.]+)em\)/)?.[1] ?? 0)
 check('mobile nav starts wide enough for 8 links', mobileBreakpointEm >= 64, `${mobileBreakpointEm}em`)
 check('open header drops backdrop-filter so the drawer fills the viewport',
   /\.navbar\[data-open='true'\][\s\S]{0,160}backdrop-filter:\s*none/.test(navbarCss))
+const headerTransition = navbarCss.match(/\.navbar\s*\{([\s\S]*?)\}/)?.[1]?.match(/transition:\s*([^;]+);/)?.[1] ?? ''
+check('header does not interpolate backdrop-filter while the drawer opens',
+  !/backdrop-filter/.test(headerTransition), headerTransition)
 const drawerTransition = mobileBlock.match(/\.navbar__nav\s*\{([\s\S]*?)\}/)?.[1]?.match(/transition:\s*([^;]+);/)?.[1] ?? ''
 check('drawer close does not animate visibility', !/visibility/.test(drawerTransition), drawerTransition)
 check('drawer focus rings use the on-brand colour',
   /\.navbar\[data-open='true'\]\s+:focus-visible\s*\{[^}]*outline-color:\s*var\(--on-brand\)/.test(navbarCss))
+check('language dropdown keeps a contrasting focus ring while the drawer is open',
+  /\.navbar\[data-open='true'\]\s+\.lang__menu\s+:focus-visible\s*\{[^}]*outline-color:\s*var\(--brand\)/.test(navbarCss))
 check('drawer stays scrollable on short screens',
-  /justify-content:\s*safe center/.test(mobileBlock) && /@media\s*\(max-height:\s*40rem\)/.test(mobileBlock))
+  /justify-content:\s*safe center/.test(mobileBlock) &&
+    /@media\s*\(max-width:\s*67\.99em\)\s+and\s*\(max-height:\s*40rem\)/.test(navbarCss))
 
 console.log('\n▸ Mobile menu toggle')
 const toggle = $('.navbar__toggle')
