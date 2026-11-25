@@ -197,7 +197,8 @@ check('each timeline card has a heading', $$('.timeline__card').every((c) => c.q
 
 console.log('\n▸ Responsive header')
 const navbarCss = readFileSync(join(root, 'src/components/Navbar.css'), 'utf8')
-const mobileBreakpointEm = Number(navbarCss.match(/@media \(max-width: ([\d.]+)em\)/)?.[1] ?? 0)
+const mobileBlock = navbarCss.split('@media (max-width: ').slice(1).find((part) => part.includes('.navbar__toggle'))
+const mobileBreakpointEm = Number(mobileBlock?.match(/^([\d.]+)em\)/)?.[1] ?? 0)
 check('mobile nav starts wide enough for 8 links', mobileBreakpointEm >= 64, `${mobileBreakpointEm}em`)
 
 console.log('\n▸ Mobile menu toggle')
